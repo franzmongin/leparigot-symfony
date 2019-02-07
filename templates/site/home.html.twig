@@ -1,0 +1,143 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SiteController!{% endblock %}
+
+{% block body %}
+<style>
+    
+.jumbotron{
+  height:400px;
+  margin-bottom: 40px;
+  background-image: url("{{ asset('img/paris.jpg') }}");
+  background-size: cover;
+}
+.article{
+  padding-bottom:20px;
+}
+.card-img-top{
+  
+}
+
+
+
+
+
+</style>
+
+<!-- JUMBOTORN -->
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Fluid jumbotron</h1>
+    <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+  </div>
+</div>
+<!-- JUMBOTORN END -->
+
+<!-- TOP ARTICLES -->
+<div class="container">
+  <div class="row">
+    <!-- TOP RESTOS -->
+    
+    <div class="col-md-4 col-sm-12">
+      <h2>TOP RESTO</h2>
+      <div class="row article">
+        <div class="col-12">
+          <div class="card w-75">
+            <img src="{{ asset('img/okok.jpg') }}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row article">
+        <div class="col-12">
+          <div class="card w-75">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- TOP RESTOS END -->
+
+    <!-- TOP BISTRO -->
+    <div class="col-md-4 col-sm-12">
+    <h2>TOP BISTRO</h2>
+      <div class="row article">
+        <div class="col-12">
+          <div class="card w-75">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row article">
+        <div class="col-12">
+          <div class="card w-75">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+    
+    </div>
+    <!-- TOP BISTRO END -->
+
+    <!-- TOP EXPO -->
+    <div class="col-md-4 col-sm-12">
+    <h2>TOP EXPO</h2>
+      <div class="row article">
+        <div class="col-12">
+          <div class="card w-75">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row article">
+        <div class="col-12">
+          <div class="card w-75">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+    
+    </div>
+    <!-- TOP EXPO END -->
+  </div>
+  
+</div>
+<!-- TOP ARTICLES END -->
+
+{% endblock %}
