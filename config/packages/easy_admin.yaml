@@ -1,6 +1,31 @@
 easy_admin:
    entities:
-#        # List the entity class name you want to manage
-         - App\Entity\Article
-#        - App\Entity\Category
-#        - App\Entity\User
+#        
+
+
+          Article:
+            # ...
+            list:
+                fields:
+                    - id
+                    - name
+                    - category
+                    - description
+                    - price
+                    - { property: 'image', type: 'image', base_path: '/images/articles' }
+            # ...
+            show:
+                fields:
+                    - name
+                    - category
+                    - description
+                    - price
+                    - { property: 'image', type: 'image', base_path: '%kernel.project_dir%/public/images/articles' }
+            class: App\Entity\Article
+            form:
+                fields:
+                    - name
+                    - category
+                    - description
+                    - price
+                    - { property: 'imageFile', type: 'vich_image' }
