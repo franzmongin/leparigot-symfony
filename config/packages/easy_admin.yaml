@@ -25,7 +25,7 @@ easy_admin:
             form:
                 fields:
                     - name
-                    - category
-                    - description
+                    - { property: category, type: choice, type_options: {choices:  {'resto':'resto', 'bistro':'bistro', 'expo':'expo'}}}
+                    - { property: 'description', type: 'textarea'}
                     - price
                     - { property: 'imageFile', type: 'vich_image' }
