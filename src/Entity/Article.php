@@ -12,6 +12,10 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  */
 class Article
 {
+    public function __construct()
+    {
+        $this->CreatedAt = new \DateTime();
+    }
     /**
      * @ORM\Column(type="string", length=255)
      * @var string
@@ -45,7 +49,7 @@ class Article
     
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=900)
      */
     private $description;
 
@@ -53,6 +57,16 @@ class Article
      * @ORM\Column(type="float")
      */
     private $price;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $CreatedAt;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $adress;
 
     public function getId(): ?int
     {
@@ -135,6 +149,30 @@ class Article
     public function getImage()
     {
         return $this->image;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->CreatedAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $CreatedAt): self
+    {
+        $this->CreatedAt = $CreatedAt;
+
+        return $this;
+    }
+
+    public function getAdress(): ?string
+    {
+        return $this->adress;
+    }
+
+    public function setAdress(string $adress): self
+    {
+        $this->adress = $adress;
+
+        return $this;
     }
 
 }

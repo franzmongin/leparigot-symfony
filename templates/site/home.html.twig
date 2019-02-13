@@ -5,12 +5,16 @@
 
 {% block body %}
 <style>
-    
+.container-top{
+          max-width:80vw;
+        }
 .jumbotron{
   height:400px;
   margin-bottom: 40px;
-  background-image: url("{{ asset('img/paris.jpg') }}");
+  background-image: url("{{ asset('img/paris2.jpg') }}");
   background-size: cover;
+  color:white;
+  
 }
 .article{
   padding-bottom:20px;
@@ -19,6 +23,24 @@
   
 }
 
+.card{
+  margin:0 auto;
+  margin-bottom:50px;
+}
+h2{
+  text-align:center;
+  font-family: 'Staatliches', cursive;
+
+  padding-bottom:30px;
+  padding-top:40px;
+  font-weight:bold;
+}
+.topresto, .topbistro, .topexpo{
+  
+}
+.topresto, .topbistro{
+  margin-right:40px;
+}
 
 
 
@@ -27,117 +49,69 @@
 
 <!-- JUMBOTORN -->
 <div class="jumbotron jumbotron-fluid">
-  <div class="container">
-    <h1 class="display-4">Fluid jumbotron</h1>
-    <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+  <div class="container" style="height:100%">
+    <div class="row" style="height:33.3%;"><div class="col-4" style="color:#002b80; font-size:65px; font-weight:bold; font-family: 'Staatliches', cursive; text-align:center; padding-top:20px;">BONS PLANS</div></div>
+    <div class="row" style="height:33.3%"><div class="col-4 offset-4" style="color:white; font-size:65px; font-weight:bold; font-family: 'Staatliches', cursive; text-align:center; padding-top:20px; ">PARISIENS</div></div>
+    <div class="row" style="height:33.3%"><div class="col-4 offset-8" style="color:red; font-size:65px; font-weight:bold; font-family: 'Staatliches', cursive; text-align:center; padding-top:20px;">A PRIX DOUX</div></div>
   </div>
 </div>
 <!-- JUMBOTORN END -->
 
-<!-- TOP ARTICLES -->
-<div class="container">
-  <div class="row">
-    <!-- TOP RESTOS -->
-    
-    <div class="col-md-4 col-sm-12">
-      <h2>TOP RESTO</h2>
-      <div class="row article">
-        <div class="col-12">
-          <div class="card w-75">
-            <img src="{{ asset('img/okok.jpg') }}" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      <div class="row article">
-        <div class="col-12">
-          <div class="card w-75">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
+<!-- TOP ARTICLES -->
+<div class="container container-top">
+  <div class="row tops">
+
+    <!-- TOP RESTO -->
+    <div class="col-sm topresto">
+      <h2>TOP RESTO</h2>
+      {% for resto in restos %}
+        <div class="card" style="width: 18rem;">
+          <img class="card-img-top" src="{{ asset('images/articles/'~ resto.image)}}" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">{{resto.name}}</h5>
+            <p class="card-text">~{{resto.price}}€</p>
           </div>
         </div>
-      </div>
+      {% endfor %}
     </div>
-    <!-- TOP RESTOS END -->
 
     <!-- TOP BISTRO -->
-    <div class="col-md-4 col-sm-12">
+    <div class="col-sm topbistro">
     <h2>TOP BISTRO</h2>
-      <div class="row article">
-        <div class="col-12">
-          <div class="card w-75">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
+      {% for bistro in bistros %}
+        <div class="card" style="width: 18rem;">
+          <img class="card-img-top" src="{{ asset('images/articles/'~ bistro.image)}}" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">{{bistro.name}}</h5>
+            <p class="card-text">~{{bistro.price}}€</p>
           </div>
         </div>
-      </div>
-
-      <div class="row article">
-        <div class="col-12">
-          <div class="card w-75">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      
-    
+      {% endfor %}
     </div>
-    <!-- TOP BISTRO END -->
 
     <!-- TOP EXPO -->
-    <div class="col-md-4 col-sm-12">
-    <h2>TOP EXPO</h2>
-      <div class="row article">
-        <div class="col-12">
-          <div class="card w-75">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
+    <div class="col-sm topexpo">
+      <h2>TOP EXPO</h2>
+      {% for expo in expos %}
+        <div class="card" style="width: 18rem;">
+          <img class="card-img-top" src="{{ asset('images/articles/'~ expo.image)}}" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">{{expo.name}}</h5>
+            {% if expo.price > 0 %}
+            <p class="card-text">~{{expo.price}}€</p>
+            {% else %}
+            <p class="card-text">GRATUIT</p>
+            {% endif %}
           </div>
         </div>
-      </div>
-
-      <div class="row article">
-        <div class="col-12">
-          <div class="card w-75">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      
-    
+      {% endfor %}
     </div>
-    <!-- TOP EXPO END -->
+
+    
+
+
   </div>
-  
 </div>
 <!-- TOP ARTICLES END -->
 

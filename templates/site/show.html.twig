@@ -9,7 +9,7 @@
 </style>
 <div class="container">
     {{ article.name }} <br>
-    <img src="public/images/articles/{{ article.image }}" alt="">
+    <img src="{{ vich_uploader_asset(article, 'imageFile') }}" alt="">
 
 
 </div>

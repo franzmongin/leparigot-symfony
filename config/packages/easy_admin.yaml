@@ -10,9 +10,10 @@ easy_admin:
                     - id
                     - name
                     - category
-                    - description
+                    - { property: 'description', type: 'text'}
                     - price
                     - { property: 'image', type: 'image', base_path: '/images/articles' }
+                    - CreatedAt
             # ...
             show:
                 fields:
@@ -21,7 +22,10 @@ easy_admin:
                     - description
                     - price
                     - { property: 'image', type: 'image', base_path: '%kernel.project_dir%/public/images/articles' }
+                    
+                    
             class: App\Entity\Article
+
             form:
                 fields:
                     - name
@@ -29,3 +33,4 @@ easy_admin:
                     - { property: 'description', type: 'textarea'}
                     - price
                     - { property: 'imageFile', type: 'vich_image' }
+                    - adress
