@@ -50,9 +50,9 @@ h2{
 <!-- JUMBOTORN -->
 <div class="jumbotron jumbotron-fluid">
   <div class="container" style="height:100%">
-    <div class="row" style="height:33.3%;"><div class="col-4" style="color:#002b80; font-size:65px; font-weight:bold; font-family: 'Staatliches', cursive; text-align:center; padding-top:20px;">BONS PLANS</div></div>
-    <div class="row" style="height:33.3%"><div class="col-4 offset-4" style="color:white; font-size:65px; font-weight:bold; font-family: 'Staatliches', cursive; text-align:center; padding-top:20px; ">PARISIENS</div></div>
-    <div class="row" style="height:33.3%"><div class="col-4 offset-8" style="color:red; font-size:65px; font-weight:bold; font-family: 'Staatliches', cursive; text-align:center; padding-top:20px;">A PRIX DOUX</div></div>
+    <div class="row" style="height:33.3%;"><div class="col-4" style="color:#002b80; font-size:65px; font-weight:bold; font-family: 'Staatliches', cursive; text-align:center; padding-top:20px; text-shadow: #000000 1px 1px, #000000 -1px 1px, #000000 -1px -1px, #000000 1px -1px;">BONS PLANS</div></div>
+    <div class="row" style="height:33.3%"><div class="col-4 offset-4" style="color:white; font-size:65px; font-weight:bold; font-family: 'Staatliches', cursive; text-align:center; text-shadow: #000000 1px 1px, #000000 -1px 1px, #000000 -1px -1px, #000000 1px -1px;padding-top:20px; ">PARISIENS</div></div>
+    <div class="row" style="height:33.3%"><div class="col-4 offset-8" style="color:red; font-size:65px; font-weight:bold; font-family: 'Staatliches', cursive; text-align:center; text-shadow: #000000 1px 1px, #000000 -1px 1px, #000000 -1px -1px, #000000 1px -1px; padding-top:20px;">A PRIX DOUX</div></div>
   </div>
 </div>
 <!-- JUMBOTORN END -->
@@ -67,7 +67,7 @@ h2{
       <h2>TOP RESTO</h2>
       {% for resto in restos %}
         <div class="card" style="width: 18rem;">
-          <img class="card-img-top" src="{{ asset('images/articles/'~ resto.image)}}" alt="Card image cap">
+          <a href="{{ path('article_show', {'id': resto.id }) }}"><img class="card-img-top" src="{{ asset('images/articles/'~ resto.image)}}" alt="Card image cap"></a>
           <div class="card-body">
             <h5 class="card-title">{{resto.name}}</h5>
             <p class="card-text">~{{resto.price}}€</p>
@@ -81,7 +81,7 @@ h2{
     <h2>TOP BISTRO</h2>
       {% for bistro in bistros %}
         <div class="card" style="width: 18rem;">
-          <img class="card-img-top" src="{{ asset('images/articles/'~ bistro.image)}}" alt="Card image cap">
+          <a href="{{ path('article_show', {'id': bistro.id }) }}"><img class="card-img-top" src="{{ asset('images/articles/'~ bistro.image)}}" alt="Card image cap"></a>
           <div class="card-body">
             <h5 class="card-title">{{bistro.name}}</h5>
             <p class="card-text">~{{bistro.price}}€</p>
@@ -95,7 +95,7 @@ h2{
       <h2>TOP EXPO</h2>
       {% for expo in expos %}
         <div class="card" style="width: 18rem;">
-          <img class="card-img-top" src="{{ asset('images/articles/'~ expo.image)}}" alt="Card image cap">
+          <a href="{{ path('article_show', {'id': expo.id }) }}"><img class="card-img-top" src="{{ asset('images/articles/'~ expo.image)}}" alt="Card image cap"></a>
           <div class="card-body">
             <h5 class="card-title">{{expo.name}}</h5>
             {% if expo.price > 0 %}

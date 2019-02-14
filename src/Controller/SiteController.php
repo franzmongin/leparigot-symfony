@@ -49,5 +49,20 @@ class SiteController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/resto", name="resto")
+     */
+    public function resto()
+    {
+        $articles = $this->getDoctrine()->getRepository(Article::class);
+        $restos = $articles->findBy(
+            ['category' => 'resto']
+        );
+
+        return $this->render('site/resto.html.twig',[
+            'restos' => $restos
+        ]);
+    }
+
     
 }

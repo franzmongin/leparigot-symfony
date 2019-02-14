@@ -1,0 +1,19 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SiteController!{% endblock %}
+
+{% block body %}
+<style>
+    
+</style>
+<div class="container">
+    {% for resto in restos %}
+    {{ resto.name }} <br>
+    <img src="{{ vich_uploader_asset(resto, 'imageFile') }}" alt="">
+    {% endfor %}
+
+
+</div>
+
+{% endblock %}

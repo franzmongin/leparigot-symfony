@@ -50,7 +50,7 @@ filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=180, St
     </style>
 {% block navbar %}
 <nav class="navbar navbar-expand-lg navbar-dark">
-	<a class="navbar-brand" href="#" id=""><img class="logo" src="{{ asset('img/logo.png')}}" height="100"></a>
+	<a class="navbar-brand" href="{{ path('site')}}" id=""><img class="logo" src="{{ asset('img/logo.png')}}" height="100"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar1" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -60,7 +60,7 @@ filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=180, St
     <a class="nav-link" href="{{ path('site') }}">ACCUEIL</a>
     </li>
     <li class="nav-item">
-    <a class="nav-link" href="http://bootstrap-ecommerce.com">RESTO</a>
+    <a class="nav-link" href="{{ path('resto') }}">RESTO</a>
     </li>
     <li class="nav-item"><a class="nav-link" href="html-components.html">BISTRO</a></li>
     <li class="nav-item"><a class="nav-link" href="html-components.html">EXPO</a></li>
