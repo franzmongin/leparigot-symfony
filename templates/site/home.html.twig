@@ -19,32 +19,48 @@
 .article{
   padding-bottom:20px;
 }
-.card-img-top{
-  
+.card-img-top:hover{
 }
 
 .card{
   margin:0 auto;
   margin-bottom:50px;
+  
+  transition: all 0.3s;
+  
+}
+.card:hover{
+  
+  transform: scale(1.1);
 }
 h2{
   text-align:center;
-  font-family: 'Staatliches', cursive;
+  font-family: 'Sanchez', serif;
 
   padding-bottom:30px;
   padding-top:40px;
   font-weight:bold;
 }
 .topresto, .topbistro, .topexpo{
-  
+  background-color:#e3e7ea;
+  border-radius:20px;
 }
 .topresto, .topbistro{
   margin-right:40px;
 }
 .jumbotron .container-fluid .row .col-4{
   letter-spacing:10px;
-}
+  -webkit-user-select:none;
+  -khtml-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  -o-user-select:none;
+  user-select:none;
 
+}
+h5.card-title{
+  font-family: 'Biryani', sans-serif;
+}
 
 
 </style>
@@ -52,9 +68,9 @@ h2{
 <!-- JUMBOTORN -->
 <div class="jumbotron jumbotron-fluid">
   <div class="container-fluid" style="height:100%">
-    <div class="row" style="height:33.3%;"><div class="col-4" style="color:#002b80; font-size:75px; font-weight:bold; font-family: 'Staatliches', cursive; text-align:center; padding-top:20px; text-shadow: #000000 3px 3px, #000000 -3px 3px, #000000 -3px -3px, #000000 3px -3px;">BONS PLANS</div></div>
-    <div class="row" style="height:33.3%"><div class="col-4 offset-4" style="color:white; font-size:75px; font-weight:bold; font-family: 'Staatliches', cursive; text-align:center; text-shadow: #000000 3px 3px, #000000 -3px 3px, #000000 -3px -3px, #000000 3px -3px;padding-top:20px; ">PARISIENS</div></div>
-    <div class="row" style="height:33.3%"><div class="col-4 offset-8" style="color:red; font-size:75px; font-weight:bold; font-family: 'Staatliches', cursive; text-align:center; text-shadow: #000000 3px 3px, #000000 -3px 3px, #000000 -3px -3px, #000000 3px -3px; padding-top:20px;">A PRIX DOUX</div></div>
+    <div class="row" style="height:33.3%;"><div class="col-4" style="color:#002b80; font-size:4vw; font-weight:bold; font-family: 'Rubik', sans-serif; text-align:center; padding-top:20px; text-shadow: #000000 3px 3px, #000000 -3px 3px, #000000 -3px -3px, #000000 3px -3px;">BONS PLANS</div></div>
+    <div class="row" style="height:33.3%"><div class="col-4 offset-4" style="color:white; font-size:4vw; font-weight:bold; font-family: 'Rubik', sans-serif; text-align:center; text-shadow: #000000 3px 3px, #000000 -3px 3px, #000000 -3px -3px, #000000 3px -3px;padding-top:20px; ">PARISIENS</div></div>
+    <div class="row" style="height:33.3%"><div class="col-4 offset-8" style="color:red; font-size:4vw; font-weight:bold; font-family: 'Rubik', sans-serif; text-align:center; text-shadow: #000000 3px 3px, #000000 -3px 3px, #000000 -3px -3px, #000000 3px -3px; padding-top:20px;">A PRIX DOUX</div></div>
   </div>
 </div>
 <!-- JUMBOTORN END -->
@@ -66,13 +82,14 @@ h2{
 
     <!-- TOP RESTO -->
     <div class="col-sm topresto">
-      <h2>TOP RESTO</h2>
+      <h2>TOP RESTOS</h2>
       {% for resto in restos %}
-        <div class="card" style="width: 18rem;">
+        <div class="card shadow p-3 mb-5 bg-white rounded" style="width: 18rem;">
           <a href="{{ path('article_show', {'id': resto.id }) }}"><img class="card-img-top img-thumbnail" src="{{ asset('images/articles/'~ resto.image)}}" alt="Card image cap"></a>
           <div class="card-body">
             <h5 class="card-title">{{resto.name}}</h5>
             <p class="card-text">~{{resto.price}}€</p>
+            <span class="card-text" style="font-style:italic; color:grey; float:left;">{{resto.createdAt|date("m/d/Y")}}</span>
           </div>
         </div>
       {% endfor %}
@@ -80,9 +97,9 @@ h2{
 
     <!-- TOP BISTRO -->
     <div class="col-sm topbistro">
-    <h2>TOP BISTRO</h2>
+    <h2>TOP BISTROS</h2>
       {% for bistro in bistros %}
-        <div class="card" style="width: 18rem;">
+        <div class="card shadow p-3 mb-5 bg-white rounded" style="width: 18rem;">
           <a href="{{ path('article_show', {'id': bistro.id }) }}"><img class="card-img-top img-thumbnail" src="{{ asset('images/articles/'~ bistro.image)}}" alt="Card image cap"></a>
           <div class="card-body">
             <h5 class="card-title">{{bistro.name}}</h5>
@@ -94,9 +111,9 @@ h2{
 
     <!-- TOP EXPO -->
     <div class="col-sm topexpo">
-      <h2>TOP EXPO</h2>
+      <h2>TOP EXPOS</h2>
       {% for expo in expos %}
-        <div class="card" style="width: 18rem;">
+        <div class="card shadow p-3 mb-5 bg-white roundedS" style="width: 18rem;">
           <a href="{{ path('article_show', {'id': expo.id }) }}"><img class="card-img-top img-thumbnail" src="{{ asset('images/articles/'~ expo.image)}}" alt="Card image cap"></a>
           <div class="card-body">
             <h5 class="card-title">{{expo.name}}</h5>
