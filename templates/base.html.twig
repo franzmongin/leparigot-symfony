@@ -2,6 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
@@ -9,6 +10,13 @@
         <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Sanchez" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Biryani" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Hind+Madurai|Lora|Montserrat" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Lobster+Two" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Taviraj" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Scope+One" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+
+
 
 
 
@@ -16,6 +24,7 @@
     </head>
     <body>
     <style>
+        
         nav.navbar.navbar-expand-lg.navbar-dark.bg-dark{
             max-height:80px;
         }
@@ -25,17 +34,18 @@
           font-weight:700;
           letter-spacing:5px;
         }
-        body{
-          background-color:white;
+        html,body{
+          background-color:#e3e7ea;
         }
         
         .navbar{
-          background-color:#002b80;
+          background-color:#2867cc;
           -moz-box-shadow: 0px 3px 5px 0px #656565;
 -webkit-box-shadow: 0px 3px 5px 0px #656565;
 -o-box-shadow: 0px 3px 5px 0px #656565;
 box-shadow: 0px 3px 5px 0px #656565;
 filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=180, Strength=5);
+        
         }
         a.nav-link:hover{
           border-bottom:2px solid white;
@@ -45,16 +55,32 @@ filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=180, St
           font-size:20px;
           margin-right:40px !important;
           border-bottom:2px solid transparent;
-          letter-spacing:2px;
+          letter-spacing:1px;
           font-family: 'Rubik', sans-serif;
 
           font-weight:600;
         }
+        .btn_bistrot{
+          color:white;
+          font-size:20px;
+          font-weight:bold;
+        }
+        div.col-4 a{
+          text-decoration:none;
+          color:black;
+        }
+        h5.card-title{
+          font-family: 'Lora', serif;
+          font-weight:bold;
+        }
+        p.card-text.price{
+          font-weight:bold;
+        }
         
     </style>
 {% block navbar %}
-<nav class="navbar navbar-expand-lg navbar-dark">
-	<a class="navbar-brand" href="{{ path('site')}}" id=""><img class="logo" src="{{ asset('img/logo.png')}}" height="70px"></a>
+<nav class="navbar navbar-expand-lg navbar-dark fixed">
+	<a class="navbar-brand" href="{{ path('site')}}" style="margin-left:30px;"><img class="logo" src="{{ asset('img/logo.png')}}" height="90px"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar1" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -66,8 +92,18 @@ filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=180, St
     <li class="nav-item">
     <a class="nav-link" href="{{ path('resto') }}">RESTOS</a>
     </li>
-    <li class="nav-item"><a class="nav-link" href="html-components.html">BISTROS</a></li>
-    <li class="nav-item"><a class="nav-link" href="html-components.html">EXPOS</a></li>
+    <div class="dropdown">
+  <button class="btn btn_bistrot dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    BISTROTS
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="#">Action</a>
+    <a class="dropdown-item" href="#">Another action</a>
+    <a class="dropdown-item" href="#">Something else here</a>
+  </div>
+</div>
+    <li class="nav-item"><a class="nav-link" href="{{ path('bistro') }}">BISTROS</a></li>
+    <li class="nav-item"><a class="nav-link" href="{{ path('expo') }}">EXPOS</a></li>
     {% if is_granted('ROLE_ADMIN') %}
     <li class="nav-item"><a class="nav-link" href="{{ path('app_logout') }}">déconnexion</a></li>
     {% endif %}

@@ -64,5 +64,37 @@ class SiteController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/bistro", name="bistro")
+     */
+    public function bistro()
+    {
+        $articles = $this->getDoctrine()->getRepository(Article::class);
+        $bistros = $articles->findBy(
+            ['category' => 'bistro']
+        );
+
+        return $this->render('site/bistro.html.twig',[
+            'bistros' => $bistros
+        ]);
+    }
+
+    /**
+     * @Route("/expo", name="expo")
+     */
+    public function expo()
+    {
+        $articles = $this->getDoctrine()->getRepository(Article::class);
+        $expos = $articles->findBy(
+            ['category' => 'expo']
+        );
+
+        return $this->render('site/expo.html.twig',[
+            'expos' => $expos
+        ]);
+    }
+
+
+
     
 }

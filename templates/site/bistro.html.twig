@@ -1,0 +1,32 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SiteController!{% endblock %}
+
+{% block body %}
+<style>
+nav{
+    margin-bottom:40px;
+}
+</style>
+<div class="container">
+    <div class="row">
+        {% for bistro in bistros %}
+        <div class="col-4">
+            <a href="{{ path('article_show', {'id': bistro.id }) }}">
+        <div class="card shadow p-3 mb-5 bg-white rounded" style="width: 18rem;">
+          <img class="card-img-top img-thumbnail" src="{{ asset('images/articles/'~ bistro.image)}}" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">{{bistro.name}}</h5>
+            <p class="card-text price">~{{bistro.price}}€</p>
+            <span class="card-text" style="font-style:italic; color:grey; float:left;">{{bistro.createdAt|date("m/d/Y")}}</span>
+          </div>
+        </div>
+      </a>
+        </div>
+        {% endfor %}
+
+    </div>
+</div>
+
+{% endblock %}

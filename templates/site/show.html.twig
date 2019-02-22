@@ -5,44 +5,155 @@
 
 {% block body %}
 <style>
-.container-fluid{
+body{
+    background-color:white;
+}
+.container{
+    font-family: 'Scope One', serif;
+    font-weight:600;
     margin-top:50px;
-    background-color:#e3e7ea;
-    width:78vw;
+    background-color:#E3E7EA;
+    width:80%;
+    padding-right:50px;
+    padding-left:50px;
+    padding-top:80px;
+    padding-bottom:50px;
+    
 }
 #map{
+    width:100%;
+    height:300px;;
+}   
+.horaires{
     height:100%;
 }
 .details{
-    height:390px;
+    min-height:50%;
 }
 .haut{
     padding-bottom:50px;
+    min-height:50%;
 }
+
+.titre{
+    padding-bottom:80px;
+    
+}
+.titre h2{
+    font-weight:bold;
+    font-family: 'Lobster Two', cursive;
+    color:#000000;
+    font-size:50px;;
+}
+h3{
+    font-family: 'Lobster Two', cursive;
+    color:#002B80;
+    padding-bottom:30px;;
+    font-weight:bold;
+    font-size:50px;
+    
+
+}
+p.horaire{
+    margin-bottom:10px;
+}
+#adress{
+    font-size:15px;
+    color:#000000;
+    font-style:italic
+}
+.img-fluid.img-thumbnail{
+    min-width:450px;
+}
+.date_publication{
+    font-style:italic;
+    color:grey;
+    padding-top:80px;;;
+}
+p.horaire::first-letter {
+    text-transform: uppercase;
+}
+
+#phone{
+    padding-bottom:30px;
+    color:#000000;
+    font-style:italic
+
+}
+#phone, #adress{
+    font-size:20px;
+}
+#tarif{
+    border:10px solid black;
+    width:190px;
+    height:190px;
+    text-align:center;
+    line-height:170px;
+    border-radius:50%;
+    font-size:60px;
+    font-family: 'Lobster Two', cursive;
+    display:inline-block;
+    padding-left:20px;;
+    padding-right:20px;;
+    font-style:italic;
+
+}
+#tarif_gratos{
+    width:190px;
+    height:190px;
+    text-align:center;
+    line-height:170px;
+    border-radius:50%;
+    font-size:60px;
+    display:inline-block;
+    padding-left:20px;;
+    padding-right:20px;
+}
+#infos{
+    background-color:white;
+    padding:40px;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+    text-align:center;
+}
+
 </style>
-<div class="container-fluid" onload="initialize()">
-    <div class="row haut">
-        <div class="col-6"  >
-            <h2>{{ article.name }}</h2>
-            <img class="img-fluid img-thumbnail" src="{{ vich_uploader_asset(article, 'imageFile') }}" alt="">
-        </div>
-        <div class="col-6">
-            <h2>horaires</h2>
-            <p id="horaires"></p>
-        </div>
-    </div>
-    <div class="row details">
+<div class="container shadow" onload="initialize()">
+    <div class="row titre">
+        <div class="col-6" id="infos"><h2>{{article.name}}</h2><br><span id="adress"><img height="20" src="{{ asset('img/icone_localisation.png')}}" alt="" style="padding-right:10px;"> {{article.adress}}</span><br><br>
+        <p id="phone"><img height="20" src="{{ asset('img/icone_phone.png')}}" style="padding-right:10px;" alt=""></p>
+        <p id="ouverture" style="font-size:20px;"> </p>
         
+        </div>
+        {% if article.price == 0 %}
+        <div class="col-6 my-auto" style="text-align:center;"><p id="tarif_gratos">GRATUIT</p></div>
+        {% else %}
+        <div class="col-6 my-auto" style="text-align:center;"><p id="tarif">{{article.price}} €</p></div>
+        {% endif %}
+    </div>
+    <div class="row haut">
+            <div class="col-6">
+                <img class="img-fluid img-thumbnail" src="{{ vich_uploader_asset(article, 'imageFile') }}" alt="">
+            </div>
         <div class="col-6">
             <h3>Description</h3>
             <p>{{article.description}}</p>
         </div>
+        
+    </div>
+    <div class="row details">
+        
+        <div class="col-6" id="horaires">
+            <h3 id="horaire_title">Horaires </h2>
+        </div>
         <div class="col-6">
-            <h3>Localisation</h3>
+            <h3>Accès</h3>
             <!-- MAP ARTICLE -->
             <div id="map"></div>
-            <span>{{article.adress}}</span>
+            
         </div>
+    </div>
+    <div class="row date_publication">
+    Publié le {{article.createdAt|date("m/d/Y")}}
     </div>
 
 
@@ -75,8 +186,13 @@
 
         service.findPlaceFromQuery(request, function(results, status) {
             if (status === google.maps.places.PlacesServiceStatus.OK) {
-            for (var i = 0; i < results.length; i++) {
-                console.log('coucou');
+            for (var i = 0; i < 1; i++) {
+                if(results[0].opening_hours.open_now == true){
+                document.getElementById("ouverture").innerHTML += "<span style='color:green; font-weight:bold; font-size:30px; margin-left:10px; border:3px solid green; border-radius:30px;padding:20px; padding-top:10px; padding-bottom:6px;;'> OUVERT</span>";
+                }
+                else{
+                    document.getElementById("ouverture").innerHTML += "<span style='color:red; font-weight:bold; font-size:30px; margin-left:10px; border:3px solid red; border-radius:30px;padding:20px; padding-top:10px; padding-bottom:6px;;'> FERMÉ</span>";
+                }
             }
             
             }
@@ -97,8 +213,9 @@
                 console.log(place.opening_hours.weekday_text);
                 var horaires = place.opening_hours.weekday_text;
                 for(var i=0; i < horaires.length; i++){
-                    document.getElementById("horaires").innerHTML += "<p>"+horaires[i]+"</p></br>";
+                    document.getElementById("horaires").innerHTML += "<p class='horaire'>"+horaires[i]+"</p>";
                 }
+                document.getElementById("phone").innerHTML += place.formatted_phone_number;
 
             }
             }

@@ -8,12 +8,7 @@
 .container-top{
           max-width:80vw;
         }
-.jumbotron{
-  height:400px;
-  margin-bottom: 40px;
-  background-image: url("{{ asset('img/paris2.jpg') }}");
-  background-size: cover;
-  color:white;
+
   
 }
 .article{
@@ -25,7 +20,7 @@
 .card{
   margin:0 auto;
   margin-bottom:50px;
-  
+  border:2px solid lightgrey;
   transition: all 0.3s;
   
 }
@@ -35,8 +30,7 @@
 }
 h2{
   text-align:center;
-  font-family: 'Sanchez', serif;
-
+  font-family: 'Lobster Two', cursive;
   padding-bottom:30px;
   padding-top:40px;
   font-weight:bold;
@@ -45,34 +39,73 @@ h2{
   background-color:#e3e7ea;
   border-radius:20px;
 }
+.topresto a, .topbistro a, .topexpo a{
+  color:black;
+  text-decoration:none;
+}
 .topresto, .topbistro{
   margin-right:40px;
 }
-.jumbotron .container-fluid .row .col-4{
-  letter-spacing:10px;
-  -webkit-user-select:none;
-  -khtml-user-select:none;
-  -moz-user-select:none;
-  -ms-user-select:none;
-  -o-user-select:none;
-  user-select:none;
-
+.jumbotron {
+  position: relative;
+  overflow: hidden;
+  background-color:black;
+  height:calc(100vh - 116px);
 }
+.jumbotron video {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  width:100%;
+  height:100%;
+  /*  object-fit is not supported on IE  */
+  object-fit: cover;
+  opacity:0.5;
+}
+.jumbotron .container {
+  z-index: 2;
+  position: relative;
+}
+
 h5.card-title{
-  font-family: 'Biryani', sans-serif;
+  font-family: 'Lora', serif;
+  font-weight:bold;
+}
+.price{
+  font-weight:bold;
+}
+h2 span{
+  border-bottom:6px solid #2867cc;
 }
 
 
+#bgvid{
+  
+  width:100%;
+  padding-bottom:50px;
+}
 </style>
 
 <!-- JUMBOTORN -->
-<div class="jumbotron jumbotron-fluid">
-  <div class="container-fluid" style="height:100%">
-    <div class="row" style="height:33.3%;"><div class="col-4" style="color:#002b80; font-size:4vw; font-weight:bold; font-family: 'Rubik', sans-serif; text-align:center; padding-top:20px; text-shadow: #000000 3px 3px, #000000 -3px 3px, #000000 -3px -3px, #000000 3px -3px;">BONS PLANS</div></div>
-    <div class="row" style="height:33.3%"><div class="col-4 offset-4" style="color:white; font-size:4vw; font-weight:bold; font-family: 'Rubik', sans-serif; text-align:center; text-shadow: #000000 3px 3px, #000000 -3px 3px, #000000 -3px -3px, #000000 3px -3px;padding-top:20px; ">PARISIENS</div></div>
-    <div class="row" style="height:33.3%"><div class="col-4 offset-8" style="color:red; font-size:4vw; font-weight:bold; font-family: 'Rubik', sans-serif; text-align:center; text-shadow: #000000 3px 3px, #000000 -3px 3px, #000000 -3px -3px, #000000 3px -3px; padding-top:20px;">A PRIX DOUX</div></div>
+
+ <div class="jumbotron jumbotron-fluid">
+
+<video autoplay muted loop >    
+    <source src="" data-src="{{asset('videos/paris.mp4')}}" type="video/mp4">
+</video>
+
+  <div class="container text-white">
+
+    <h1 class="display-4">Hello, world!</h1>
+    <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+    <hr class="my-4">
+    <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+
   </div>
+  <!-- /.container -->
 </div>
+
 <!-- JUMBOTORN END -->
 
 
@@ -82,50 +115,60 @@ h5.card-title{
 
     <!-- TOP RESTO -->
     <div class="col-sm topresto">
-      <h2>TOP RESTOS</h2>
+      <h2><span>RESTOS</span></h2>
       {% for resto in restos %}
+      <a href="{{ path('article_show', {'id': resto.id }) }}">
         <div class="card shadow p-3 mb-5 bg-white rounded" style="width: 18rem;">
-          <a href="{{ path('article_show', {'id': resto.id }) }}"><img class="card-img-top img-thumbnail" src="{{ asset('images/articles/'~ resto.image)}}" alt="Card image cap"></a>
+          <img class="card-img-top img-thumbnail" src="{{ asset('images/articles/'~ resto.image)}}" alt="Card image cap">
           <div class="card-body">
             <h5 class="card-title">{{resto.name}}</h5>
-            <p class="card-text">~{{resto.price}}€</p>
+            <p class="card-text price">~{{resto.price}}€</p>
             <span class="card-text" style="font-style:italic; color:grey; float:left;">{{resto.createdAt|date("m/d/Y")}}</span>
           </div>
         </div>
+      </a>
       {% endfor %}
     </div>
 
     <!-- TOP BISTRO -->
     <div class="col-sm topbistro">
-    <h2>TOP BISTROS</h2>
+    <h2><span>BISTROS</span></h2>
       {% for bistro in bistros %}
+      <a href="{{ path('article_show', {'id': bistro.id }) }}">
         <div class="card shadow p-3 mb-5 bg-white rounded" style="width: 18rem;">
-          <a href="{{ path('article_show', {'id': bistro.id }) }}"><img class="card-img-top img-thumbnail" src="{{ asset('images/articles/'~ bistro.image)}}" alt="Card image cap"></a>
+          <img class="card-img-top img-thumbnail" src="{{ asset('images/articles/'~ bistro.image)}}" alt="Card image cap">
           <div class="card-body">
             <h5 class="card-title">{{bistro.name}}</h5>
-            <p class="card-text">~{{bistro.price}}€</p>
+            <p class="card-text price">~{{bistro.price}}€</p>
+            <span class="card-text" style="font-style:italic; color:grey; float:left;">{{bistro.createdAt|date("m/d/Y")}}</span>
           </div>
         </div>
+      </a>
       {% endfor %}
     </div>
 
     <!-- TOP EXPO -->
     <div class="col-sm topexpo">
-      <h2>TOP EXPOS</h2>
+      <h2><span>EXPOS</span></h2>
       {% for expo in expos %}
+      <a href="{{ path('article_show', {'id': expo.id }) }}">
         <div class="card shadow p-3 mb-5 bg-white roundedS" style="width: 18rem;">
-          <a href="{{ path('article_show', {'id': expo.id }) }}"><img class="card-img-top img-thumbnail" src="{{ asset('images/articles/'~ expo.image)}}" alt="Card image cap"></a>
+          <img class="card-img-top img-thumbnail" src="{{ asset('images/articles/'~ expo.image)}}" alt="Card image cap">
           <div class="card-body">
             <h5 class="card-title">{{expo.name}}</h5>
             {% if expo.price > 0 %}
-            <p class="card-text">~{{expo.price}}€</p>
+            <p class="card-text price">~{{expo.price}}€</p>
             {% else %}
-            <p class="card-text">GRATUIT</p>
+            <p class="card-text price">GRATUIT</p>
             {% endif %}
+            <span class="card-text" style="font-style:italic; color:grey; float:left;">{{expo.createdAt|date("m/d/Y")}}</span>
           </div>
         </div>
+      </a>
       {% endfor %}
     </div>
+
+    
 
     
 
@@ -133,5 +176,21 @@ h5.card-title{
   </div>
 </div>
 <!-- TOP ARTICLES END -->
+<script>
+function deferVideo() {
 
+    //defer html5 video loading
+  $("video source").each(function() {
+    var sourceFile = $(this).attr("data-src");
+    $(this).attr("src", sourceFile);
+    var video = this.parentElement;
+    video.load();
+    // uncomment if video is not autoplay
+    //video.play();
+  });
+
+}
+window.onload = deferVideo;
+
+</script>
 {% endblock %}
