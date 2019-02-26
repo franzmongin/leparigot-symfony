@@ -34,3 +34,4 @@ easy_admin:
                     - price
                     - { property: 'imageFile', type: 'vich_image' }
                     - adress
+                    - place

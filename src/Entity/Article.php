@@ -68,6 +68,11 @@ class Article
      */
     private $adress;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $place;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -171,6 +176,18 @@ class Article
     public function setAdress(string $adress): self
     {
         $this->adress = $adress;
+
+        return $this;
+    }
+
+    public function getPlace(): ?string
+    {
+        return $this->place;
+    }
+
+    public function setPlace(?string $place): self
+    {
+        $this->place = $place;
 
         return $this;
     }
