@@ -197,14 +197,14 @@ border:1px solid #cfcfcf;
 
         service.findPlaceFromQuery(request, function(results, status) {
             if (status === google.maps.places.PlacesServiceStatus.OK) {
-            for (var i = 0; i < 1; i++) {
-                if(results[0].opening_hours.open_now == true){
-                document.getElementById("ouverture").innerHTML += "<span style='color:green; font-weight:bold; font-size:30px; margin-left:10px; border:3px solid green; border-radius:30px;padding:20px; padding-top:10px; padding-bottom:6px;;'> OUVERT</span>";
+                for (var i = 0; i < 1; i++) {
+                    if(results[0].opening_hours.open_now == true){
+                    document.getElementById("ouverture").innerHTML += "<span style='color:green; font-weight:bold; font-size:30px; margin-left:10px; border:3px solid green; border-radius:30px;padding:20px; padding-top:10px; padding-bottom:6px;;'> OUVERT</span>";
+                    }
+                    else{
+                        document.getElementById("ouverture").innerHTML += "<span style='color:red; font-weight:bold; font-size:30px; margin-left:10px; border:3px solid red; border-radius:30px;padding:20px; padding-top:10px; padding-bottom:6px;;'> FERMÉ</span>";
+                    }
                 }
-                else{
-                    document.getElementById("ouverture").innerHTML += "<span style='color:red; font-weight:bold; font-size:30px; margin-left:10px; border:3px solid red; border-radius:30px;padding:20px; padding-top:10px; padding-bottom:6px;;'> FERMÉ</span>";
-                }
-            }
             
             }
             console.log(results[0]);
@@ -258,6 +258,8 @@ border:1px solid #cfcfcf;
         var address = "{{article.adress}}";
         geocoder.geocode( { 'address': address}, function(results, status) {
         if (status == 'OK') {
+            
+            console.log(results[0]);
             map.setCenter(results[0].geometry.location);
             var marker = new google.maps.Marker({
                 map: map,
