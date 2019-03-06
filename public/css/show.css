@@ -1,0 +1,131 @@
+body{
+    background-color:#0A1C2E;
+    
+    font-size:1.2rem;
+}
+.container-top{
+    font-family: 'Scope One', serif;
+    font-weight:600;
+    margin-top:50px;
+    background-color:#E3E7EA;
+    width:80%;
+    padding-right:50px;
+    padding-left:50px;
+    padding-top:80px;
+    padding-bottom:50px;
+    z-index:2;
+    -moz-box-shadow: 10px 10px 5px 0px #656565;
+-webkit-box-shadow: 10px 10px 5px 0px #656565;
+-o-box-shadow: 10px 10px 5px 0px #656565;
+box-shadow: 10px 10px 5px 0px #656565;
+filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=134, Strength=5);
+border:1px solid #cfcfcf;
+transition:1s;
+margin-top:-500vh;
+    
+}
+#map{
+    width:100%;
+    height:300px;;
+}   
+.horaires{
+    height:100%;
+}
+.details{
+    min-height:50%;
+}
+.haut{
+    padding-bottom:50px;
+    min-height:50%;
+}
+
+.titre{
+    padding-bottom:80px;
+    
+}
+.titre h2{
+    font-weight:bold;
+    font-family: 'Lobster Two', cursive;
+    color:#000000;
+    font-size:50px;;
+}
+h3{
+    font-family: 'Lobster Two', cursive;
+    color:#002B80;
+    padding-bottom:30px;;
+    font-weight:bold;
+    font-size:50px;
+    text-align:center;
+    
+
+}
+p.horaire{
+    margin-bottom:10px;
+}
+#adress{
+    font-size:15px;
+    color:#000000;
+    font-style:italic
+}
+.img-fluid.img-thumbnail{
+    min-width:450px;
+}
+.date_publication{
+    font-style:italic;
+    color:grey;
+    padding-top:80px;;;
+}
+p.horaire::first-letter {
+    text-transform: uppercase;
+}
+
+#phone{
+    padding-bottom:30px;
+    color:#000000;
+    font-style:italic
+
+}
+#phone, #adress{
+    font-size:20px;
+}
+#tarif{
+    border:10px solid black;
+    width:210px;
+    height:210px;
+    text-align:center;
+    line-height:190px;
+    border-radius:50%;
+    font-size:64px;
+    font-family: 'Lobster Two', cursive;
+    display:inline-block;
+    padding-left:20px;;
+    padding-right:20px;;
+    font-style:italic;
+    color:black;
+
+}
+#tarif_gratos{
+    width:190px;
+    height:190px;
+    text-align:center;
+    line-height:170px;
+    border-radius:50%;
+    font-size:60px;
+    display:inline-block;
+    padding-left:20px;;
+    padding-right:20px;
+}
+#infos{
+    background-color:white;
+    padding:40px;
+    text-align:center;
+    -moz-box-shadow: 10px 10px 5px 0px #656565;
+-webkit-box-shadow: 10px 10px 5px 0px #656565;
+-o-box-shadow: 10px 10px 5px 0px #656565;
+box-shadow: 10px 10px 5px 0px #656565;
+filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=134, Strength=5);
+border:1px solid #cfcfcf;
+}
+.textes{
+    text-align:center;
+}

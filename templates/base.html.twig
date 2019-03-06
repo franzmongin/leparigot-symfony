@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}Le Parigo{% endblock %}</title>
+        {% block stylesheets %}
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Staatliches" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Sanchez" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Biryani" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Hind+Madurai|Lora|Montserrat" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Lobster+Two" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Taviraj" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Scope+One" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:700" rel="stylesheet">
+        <link rel="apple-touch-icon" sizes="57x57" href="{{asset('img/favicon/apple-icon-57x57.png')}}">
+        <link rel="apple-touch-icon" sizes="60x60" href="{{asset('img/favicon/apple-icon-60x60.png')}}">
+        <link rel="apple-touch-icon" sizes="72x72" href="{{asset('img/favicon/apple-icon-72x72.png')}}">
+        <link rel="apple-touch-icon" sizes="76x76" href="{{asset('img/favicon/apple-icon-76x76.png')}}">
+        <link rel="apple-touch-icon" sizes="114x114" href="{{asset('img/favicon/apple-icon-114x114.png')}}">
+        <link rel="apple-touch-icon" sizes="120x120" href="{{asset('img/favicon/apple-icon-120x120.png')}}">
+        <link rel="apple-touch-icon" sizes="144x144" href="{{asset('img/favicon/apple-icon-144x144.png')}}">
+        <link rel="apple-touch-icon" sizes="152x152" href="{{asset('img/favicon/apple-icon-152x152.png')}}">
+        <link rel="apple-touch-icon" sizes="180x180" href="{{asset('img/favicon/apple-icon-180x180.png')}}">
+        <link rel="icon" type="image/png" sizes="192x192"  href="{{asset('img/favicon/android-icon-192x192.png')}}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{{asset('img/favicon/favicon-32x32.png')}}">
+        <link rel="icon" type="image/png" sizes="96x96" href="{{asset('img/favicon/favicon-96x96.png')}}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{{asset('img/favicon/favicon-16x16.png')}}">
+        <link rel="manifest" href="{{asset('img/favicon/manifest.json')}}">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="{{asset('img/favicon/ms-icon-144x144.png')}}">
+        <meta name="theme-color" content="#ffffff">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+
+
+
+        
+        {% endblock %}
+    </head>
+    <body>
+    <style>
+        
+        nav.navbar.navbar-expand-lg.navbar-dark.bg-dark{
+            max-height:80px;
+        }
+        #titrenav{
+          font-family: 'Cinzel', serif;
+          font-size:2.6rem;
+          font-weight:700;
+          letter-spacing:5px;
+        }
+        
+        
+        .navbar{
+          background-color:#020f23;
+          -moz-box-shadow: 0px 3px 5px 0px #656565;
+-webkit-box-shadow: 0px 3px 5px 0px #656565;
+-o-box-shadow: 0px 3px 5px 0px #656565;
+box-shadow: 0px 3px 5px 0px #656565;
+filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=180, Strength=5);
+z-index:1;
+        
+        }
+        a.nav-link {
+  position: relative;
+  text-decoration: none;
+}
+        a.nav-link:hover{
+          color: white;
+        }
+        a.nav-link:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: white;
+  visibility: hidden;
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transition: all 0.3s ease-in-out 0s;
+  transition: all 0.3s ease-in-out 0s;
+}
+a.nav-link:hover:before {
+  visibility: visible;
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+}
+        a.nav-link{
+          color:white !important;
+          font-size:20px;
+          margin-right:40px !important;
+          border-bottom:2px solid transparent;
+          letter-spacing:1px;
+          font-family: 'Roboto Condensed', sans-serif;
+
+          font-weight:600;
+        }
+        .btn_bistrot{
+          color:white;
+          font-size:20px;
+          font-weight:bold;
+        }
+        div.div-item-content a{
+          text-decoration:none;
+          color:black;
+        }
+        h5.card-title{
+          font-family: 'Lora', serif;
+          font-weight:bold;
+        }
+        p.card-text.price{
+          font-weight:bold;
+        }
+        .section-padding {
+	padding: 60px 0;
+}
+.bottom {
+    background-color: #020f23;
+    margin-top:30px;
+}
+.bottom .copyright {
+    color: #e5e5e5;
+    font-weight: 600;
+}
+.copyright a {
+    color: #e5e5e5;
+    margin-left: 3px;
+    padding-right: 3px;
+}
+.bottom p {
+    margin-bottom: 0;
+    line-height: 50px;
+    font-size: 16px;
+    font-weight: 400;
+}
+.copyright p span {
+    color: #d1caca;
+}
+.bottom .copyright p, .bottom .copyright a:hover{
+    color: #6c6d83;
+}
+    </style>
+{% block navbar %}
+<nav class="navbar navbar-expand-lg navbar-dark fixed">
+	<a class="navbar-brand" href="{{ path('site')}}" style="margin-left:30px;"><img class="logo" src="{{ asset('img/logo.png')}}" height="90px"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar1" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbar1">
+    <ul class="navbar-nav ml-auto" style= "margin-right:400px;">
+    <li class="nav-item">
+    <a class="nav-link" href="{{ path('site') }}">ACCUEIL</a>
+    </li>
+    <li class="nav-item">
+    <a class="nav-link" href="{{ path('resto') }}">RESTOS</a>
+    </li>
+    <div class="dropdown">
+  
+  
+</div>
+    <li class="nav-item"><a class="nav-link" href="{{ path('bistro') }}">BISTROS</a></li>
+    <li class="nav-item"><a class="nav-link" href="{{ path('expo') }}">EXPOS</a></li>
+    {% if is_granted('ROLE_ADMIN') %}
+    <li class="nav-item"><a class="nav-link" href="{{ path('app_logout') }}">déconnexion</a></li>
+    {% endif %}
+
+
+    </ul>
+    
+  </div>
+</nav>
+  {% endblock %}
+{% block body %}{% endblock %}
+{% block footer %}
+<!--Bottom Footer-->
+		<div class="bottom section-padding">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 text-center">
+						<div class="copyright">
+							<p>© <span>2019</span> <a href="#" class="transition">Le Parigo</a> All rights reserved.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+<!--Bottom Footer-->
+{% endblock %}
+{% block javascripts %}
+  <script>
+    
+  </script>
+{% endblock %}
+</body>
+</html>

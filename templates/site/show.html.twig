@@ -1,0 +1,173 @@
+
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+  {{parent()}}
+  <link rel="stylesheet" href="{{asset('css/show.css')}}">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+{% endblock %}
+{% block body %}
+<div style="min-height:100vh">
+    <div class="container container-top shadow" id="container-top" onload="initialize()">
+        <div class="row titre">
+            <div class="col-lg-6" id="infos">
+                <h2>{{article.name}}</h2><br>
+                <p id="adress"><img height="20" src="{{ asset('img/icone_localisation.png')}}" alt="" style="padding-right:10px;"> {{article.adress}}
+                {% if article.place is defined %}
+                    ,<br><span>{{article.place}}</span>
+                {% endif %}
+                <br></p>
+                <p id="phone"><img height="20" src="{{ asset('img/icone_phone.png')}}" style="padding-right:10px;" alt=""></p>
+                <p id="ouverture" style="font-size:20px;"> </p>
+            
+            </div>
+            {% if article.price == 0 %}
+            <div class="col-lg-6 my-auto" style="text-align:center;"><p id="tarif_gratos">GRATUIT</p></div>
+            {% else %}
+            <div class="col-lg-6 my-auto" style="text-align:center;"><p id="tarif"><span style="border-bottom:10px solid black;">{{article.price}} €</span></p></div>
+            {% endif %}
+        </div>
+        <div class="row haut">
+                <div class="col-lg-6" style="text-align:center">
+                    <img class="img-fluid img-thumbnail" src="{{ vich_uploader_asset(article, 'imageFile') }}" alt="">
+                </div>
+            <div class="col-lg-5 offset-1">
+                <h3>Quel est le plan ?</h3>
+                <p class="textes">{{article.description}}</p>
+            </div>
+            
+        </div>
+        <div class="row details">
+            
+            <div class="col-lg-6" id="horaires">
+                <h3 id="horaire_title">Horaires </h2>
+            </div>
+            <div class="col-lg-6">
+                <h3>Accès</h3>
+                <!-- MAP ARTICLE -->
+                <div id="map"></div>
+                
+            </div>
+        </div>
+        <div class="row date_publication">
+        Publié le {{article.createdAt|date("d/m/Y")}}
+        </div>
+
+
+    </div>
+</div>
+
+
+{% endblock %}
+{% block javascripts %}
+{{parent()}}
+<script>
+    var geocoder;
+    var map;
+    function initialize() {
+        var service;
+        var infowindow;
+        geocoder = new google.maps.Geocoder();
+        var latlng = new google.maps.LatLng(-34.397, 150.644);
+        var mapOptions = {
+        zoom: 15,
+        center: latlng,
+        mapTypeControl: false
+        }
+        map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+        var request = {
+            query: "{{article.name|raw}}|{{article.adress}}|{{article.place}}",
+            fields: ['name', 'opening_hours', 'geometry', 'place_id'],
+        };
+        var service = new google.maps.places.PlacesService(map);
+
+        service.findPlaceFromQuery(request, function(results, status) {
+            if (status === google.maps.places.PlacesServiceStatus.OK) {
+                for (var i = 0; i < 1; i++) {
+                    if(results[0].opening_hours.open_now == true){
+                    document.getElementById("ouverture").innerHTML += "<span style='background-color:green; font-weight:bold; font-size:30px; margin-left:10px; border:3px solid green; border-radius:22px;padding:20px; padding-top:10px; padding-bottom:6px; color:white; letter-spacing:2px; font-style:italic;'> OUVERT</span>";
+                    }
+                    else{
+                        document.getElementById("ouverture").innerHTML += "<span style='background-color:red; font-weight:bold; font-size:30px; margin-left:10px; border:3px solid red; border-radius:22px;padding:20px; padding-top:10px; padding-bottom:6px; color:white; letter-spacing:2px; font-style:italic;'> FERMÉ</span>";
+                    }
+                }
+            
+            }
+            console.log(results[0]);
+            console.log(results[0].place_id);
+            var request = {
+                placeId: results[0].place_id,
+                fields: ['name', 'opening_hours', 'formatted_phone_number', 'geometry']
+            };
+
+            service = new google.maps.places.PlacesService(map);
+            service.getDetails(request, callback);
+            
+            function callback(place, status) {
+            if (status == google.maps.places.PlacesServiceStatus.OK) {
+                console.log('ok');
+                console.log(place);
+                console.log(place.opening_hours.weekday_text);
+                var horaires = place.opening_hours.weekday_text;
+                for(var i=0; i < horaires.length; i++){
+                    document.getElementById("horaires").innerHTML += "<p class='horaire textes'>"+horaires[i]+"</p>";
+                }
+                var phone = place.formatted_phone_number;
+                if (typeof phone !== 'undefined'){
+                    document.getElementById("phone").innerHTML += place.formatted_phone_number;
+                }
+                else{
+                    document.getElementById("phone").innerHTML += '<span style="color:grey">inconnu</span>';
+                }
+                
+
+            }
+            }
+        });
+        
+        codeAddress();
+        function createMarker(place) {
+        var marker = new google.maps.Marker({
+          map: map,
+          position: place.geometry.location
+        });
+
+        google.maps.event.addListener(marker, 'click', function() {
+          infowindow.setContent(place.name);
+          infowindow.open(map, this);
+        });
+        }
+
+    }
+
+    function codeAddress() {
+        var address = "{{article.adress}}";
+        geocoder.geocode( { 'address': address}, function(results, status) {
+        if (status == 'OK') {
+            
+            console.log(results[0]);
+            map.setCenter(results[0].geometry.location);
+            var marker = new google.maps.Marker({
+                map: map,
+                position: results[0].geometry.location
+            });
+        } else {
+            alert('Geocode was not successful for the following reason: ' + status);
+        }
+        });
+    }
+    
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmJr7LIm3dKeOjtFo7fAH1g5mffDQUL2I&libraries=places&callback=initialize"
+    async defer></script>
+<script>
+window.onload = function() {
+  var container = document.getElementById('container-top')
+  container.style.marginTop = "25px";
+};
+</script>
+{% endblock %}
+
+

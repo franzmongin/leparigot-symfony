@@ -1,0 +1,174 @@
+html{
+  scroll-behavior: smooth;
+}
+html,body{
+  background-color:#0A1C2E;
+}
+.article{
+  padding-bottom:20px;
+}
+.card-img-top:hover{
+}
+
+.card{
+  margin:0 auto;
+  margin-bottom:50px;
+  border:2px solid lightgrey;
+  transition: all 0.3s;
+  
+}
+.card:hover{
+  
+  transform: scale(1.05);
+}
+h1{
+  font-family: 'Lora', serif;
+  text-align:center;
+}
+h2{
+  text-align:center;
+  font-family: 'Roboto Condensed', sans-serif;
+  padding-bottom:30px;
+  padding-top:40px;
+  font-weight:bold;
+}
+.topresto, .topbistro, .topexpo{
+}
+.topresto a, .topbistro a, .topexpo a{
+  color:black;
+  text-decoration:none;
+}
+.topresto, .topbistro{
+  margin-right:24px;
+}
+
+
+h5.card-title{
+  font-family: 'Lora', serif;
+  font-weight:bold;
+}
+.price{
+  font-weight:bold;
+}
+h2 span{
+  border-bottom:6px solid #2867cc;
+}
+.jumbotron {
+  position: relative;
+  overflow: hidden;
+  background-color:black;
+  height:calc(100vh - 116px);
+  margin-bottom:0;
+  padding-top:0;
+  padding-bottom:0;
+}
+.jumbotron video {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  width:100%;
+  height:100%;
+  /*  object-fit is not supported on IE  */
+  object-fit: cover;
+  opacity:0.8;
+}
+.jumbotron .container-fluid {
+  z-index: 2;
+  position: relative;
+}
+.haut{
+  height:100%;
+}
+.container-top{
+  padding-bottom:50px;
+  padding-top:50px;
+}
+
+.haut-gauche{
+  font-size:4vw;
+  font-weight:bold;
+  color:white;
+  margin:auto;
+}
+.haut-gauche p {
+  background-color:#020F23;
+}
+.center-con {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top:8vh;
+}
+
+.round {
+    position: relative;
+    border: 5px solid #fff;
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+}
+
+span.fleche {
+    z-index: 999;
+    height: 3px;
+    margin:1px;
+    width: 30px;
+    background: #fff;
+    transition: 0.4s ease;
+    font-weight:bold;
+}
+
+span.fleche:first-child {
+    display: block;
+    position: absolute;
+    transform: rotate(45deg);
+    left: 25%;
+    bottom: 35%;
+}
+
+span.fleche:nth-child(2) {
+    display: block;
+    position: absolute;
+    transform: rotate(-45deg);
+    left: 45%;
+    bottom: 35%;
+}
+
+span.fleche:nth-child(3) {
+    display: block;
+    position: absolute;
+    transform: rotate(45deg);
+    left: 25%;
+    bottom: 54%;
+}
+
+span.fleche:nth-child(4) {
+    display: block;
+    position: absolute;
+    transform: rotate(-45deg);
+    left: 45%;
+    bottom: 54%;
+}
+
+.round:hover span.fleche:nth-child(1) {
+    transform: rotate(-135deg);
+}
+
+.round:hover span.fleche:nth-child(2) {
+    transform: rotate(135deg);
+}
+
+.round:hover span.fleche:nth-child(3) {
+    transform: rotate(225deg);
+}
+
+.round:hover span.fleche:nth-child(4) {
+  transform: rotate(-225deg);
+}
+
+.moncarousel{
+  margin:auto;
+}
+
+
+  
