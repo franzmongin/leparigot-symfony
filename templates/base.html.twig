@@ -46,7 +46,8 @@
     </head>
     <body>
     <style>
-        
+        .btn-lg{
+        }
         nav.navbar.navbar-expand-lg.navbar-dark.bg-dark{
             max-height:80px;
         }
@@ -150,7 +151,7 @@ a.nav-link:hover:before {
 }
     </style>
 {% block navbar %}
-<nav class="navbar navbar-expand-lg navbar-dark fixed">
+<nav class="navbar navbar-expand-lg navbar-dark fixed a">
 	<a class="navbar-brand" href="{{ path('site')}}" style="margin-left:30px;"><img class="logo" src="{{ asset('img/logo.png')}}" height="90px"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar1" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -161,14 +162,14 @@ a.nav-link:hover:before {
     <a class="nav-link" href="{{ path('site') }}">ACCUEIL</a>
     </li>
     <li class="nav-item">
-    <a class="nav-link" href="{{ path('resto') }}">RESTOS</a>
+    <a class="nav-link" href="{{ path('resto') }}">LES RESTOS</a>
     </li>
     <div class="dropdown">
   
   
 </div>
-    <li class="nav-item"><a class="nav-link" href="{{ path('bistro') }}">BISTROS</a></li>
-    <li class="nav-item"><a class="nav-link" href="{{ path('expo') }}">EXPOS</a></li>
+    <li class="nav-item"><a class="nav-link" href="{{ path('bistro') }}">LES BISTROS</a></li>
+    <li class="nav-item"><a class="nav-link" href="{{ path('expo') }}">LES EXPOS</a></li>
     {% if is_granted('ROLE_ADMIN') %}
     <li class="nav-item"><a class="nav-link" href="{{ path('app_logout') }}">déconnexion</a></li>
     {% endif %}

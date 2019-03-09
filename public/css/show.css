@@ -21,7 +21,7 @@ box-shadow: 10px 10px 5px 0px #656565;
 filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=134, Strength=5);
 border:1px solid #cfcfcf;
 transition:1s;
-margin-top:-500vh;
+margin-top:500vh;
     
 }
 #map{
@@ -47,15 +47,20 @@ margin-top:-500vh;
     font-weight:bold;
     font-family: 'Lobster Two', cursive;
     color:#000000;
-    font-size:50px;;
+    font-size:55px;
+}
+h3 span{
+    border-bottom: 8px solid #002B80;
 }
 h3{
     font-family: 'Lobster Two', cursive;
     color:#002B80;
-    padding-bottom:30px;;
+    padding-bottom:50px;;
     font-weight:bold;
-    font-size:50px;
+    font-size:45px;
     text-align:center;
+    
+    
     
 
 }
@@ -129,3 +134,23 @@ border:1px solid #cfcfcf;
 .textes{
     text-align:center;
 }
+#date{
+    font-style:italic;
+}
+#lien_itineraire{
+    text-align:center;
+    padding-top:20px;
+}
+.btn-lg{
+    background-color:#0A1C2E;
+    color:white;
+    font-weight:bold;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size:30px;
+  }
+  .btn-lg:hover{
+    background-color:white;
+    color:#0A1C2E;
+    transition:0.5s;
+  
+  }

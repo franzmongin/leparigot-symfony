@@ -12,8 +12,11 @@
         <div class="row titre">
             <div class="col-lg-6" id="infos">
                 <h2>{{article.name}}</h2><br>
+                {% if article.dateDebut %}
+                <p id="date"><img height="20" src="{{ asset('img/icone_calendar.png')}}" style="padding-right:10px;" alt="">Du {{article.dateDebut|date('d/m/Y')}} au {{article.dateFin|date('d/m/Y')}}</p>
+                {% endif %}
                 <p id="adress"><img height="20" src="{{ asset('img/icone_localisation.png')}}" alt="" style="padding-right:10px;"> {{article.adress}}
-                {% if article.place is defined %}
+                {% if (article.place is defined) and (article.category == 'expo') %}
                     ,<br><span>{{article.place}}</span>
                 {% endif %}
                 <br></p>
@@ -29,10 +32,10 @@
         </div>
         <div class="row haut">
                 <div class="col-lg-6" style="text-align:center">
-                    <img class="img-fluid img-thumbnail" src="{{ vich_uploader_asset(article, 'imageFile') }}" alt="">
+                    <img class="img-fluid img-thumbnail" src="{{ vich_uploader_asset(article, 'imageFile') }}" alt="{{article.name}}">
                 </div>
             <div class="col-lg-5 offset-1">
-                <h3>Quel est le plan ?</h3>
+                <h3><span>Quel est le plan ?</span></h3>
                 <p class="textes">{{article.description}}</p>
             </div>
             
@@ -40,12 +43,13 @@
         <div class="row details">
             
             <div class="col-lg-6" id="horaires">
-                <h3 id="horaire_title">Horaires </h2>
+                <h3 id="horaire_title"><span>Horaires </span></h2>
             </div>
             <div class="col-lg-6">
-                <h3>Accès</h3>
+                <h3><span>Accès</span></h3>
                 <!-- MAP ARTICLE -->
                 <div id="map"></div>
+                <p id="lien_itineraire"></p>
                 
             </div>
         </div>
@@ -72,24 +76,32 @@
         var mapOptions = {
         zoom: 15,
         center: latlng,
-        mapTypeControl: false
+        mapTypeControl: false,
+        streetViewControl: false
         }
         map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
+        {% if article.category == "expo" %}
         var request = {
-            query: "{{article.name|raw}}|{{article.adress}}|{{article.place}}",
+            query: "{{article.place|raw}}|{{article.adress|raw}}",
             fields: ['name', 'opening_hours', 'geometry', 'place_id'],
         };
+        {% else %}
+        var request = {
+            query: "{{article.name}}|{{article.place|raw}}|{{article.adress|raw}}",
+            fields: ['name', 'opening_hours', 'geometry', 'place_id'],
+        };
+        {% endif %}
         var service = new google.maps.places.PlacesService(map);
 
         service.findPlaceFromQuery(request, function(results, status) {
             if (status === google.maps.places.PlacesServiceStatus.OK) {
                 for (var i = 0; i < 1; i++) {
                     if(results[0].opening_hours.open_now == true){
-                    document.getElementById("ouverture").innerHTML += "<span style='background-color:green; font-weight:bold; font-size:30px; margin-left:10px; border:3px solid green; border-radius:22px;padding:20px; padding-top:10px; padding-bottom:6px; color:white; letter-spacing:2px; font-style:italic;'> OUVERT</span>";
+                    document.getElementById("ouverture").innerHTML += "<span style='background-color:green; font-weight:bold; font-size:30px; margin-left:10px; border:3px solid green; border-radius:22px;padding:20px; padding-top:10px; padding-bottom:6px; color:white; letter-spacing:2px; font-style:italic; border: 6px solid darkgreen;'> OUVERT</span>";
                     }
                     else{
-                        document.getElementById("ouverture").innerHTML += "<span style='background-color:red; font-weight:bold; font-size:30px; margin-left:10px; border:3px solid red; border-radius:22px;padding:20px; padding-top:10px; padding-bottom:6px; color:white; letter-spacing:2px; font-style:italic;'> FERMÉ</span>";
+                        document.getElementById("ouverture").innerHTML += "<span style='background-color:red; font-weight:bold; font-size:30px; margin-left:10px; border:3px solid red; border-radius:22px;padding:20px; padding-top:10px; padding-bottom:6px; color:white; letter-spacing:2px; font-style:italic; border: 6px solid darkred;'> FERMÉ</span>";
                     }
                 }
             
@@ -167,6 +179,16 @@ window.onload = function() {
   var container = document.getElementById('container-top')
   container.style.marginTop = "25px";
 };
+</script>
+<script>
+console.log("{{article.adress}}")
+ var adressformaproute = "{{article.adress}}".split(' ').join('+');
+ 
+ {# var adressformaproute = adressformaproute.replace('-', '+'); #}
+ console.log(adressformaproute);
+ document.getElementById('lien_itineraire').innerHTML = '<a target="_blank" href="'+ 'https://www.google.fr/maps/place/'+adressformaproute+'"><button type="button" class="btn btn-lg">VOIR ITINERAIRE</button></a>';
+
+ 
 </script>
 {% endblock %}
 

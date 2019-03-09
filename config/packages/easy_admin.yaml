@@ -14,6 +14,7 @@ easy_admin:
                     - price
                     - { property: 'image', type: 'image', base_path: '/images/articles' }
                     - CreatedAt
+                    - place
             # ...
             show:
                 fields:
@@ -35,3 +36,5 @@ easy_admin:
                     - { property: 'imageFile', type: 'vich_image' }
                     - adress
                     - place
+                    - dateDebut
+                    - dateFin

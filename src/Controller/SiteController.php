@@ -17,17 +17,17 @@ class SiteController extends AbstractController
         $articles = $this->getDoctrine()->getRepository(Article::class);
         $restos = $articles->findBy(
             ['category' => 'resto'],
-            ['id' => 'ASC'],
+            ['id' => 'DESC'],
             3
         );
         $bistros = $articles->findBy(
             ['category' => 'bistro'],
-            ['id' => 'ASC'],
+            ['id' => 'DESC'],
             3
         );
         $expos = $articles->findBy(
             ['category' => 'expo'],
-            ['id' => 'ASC'],
+            ['id' => 'DESC'],
             3
         );
 
