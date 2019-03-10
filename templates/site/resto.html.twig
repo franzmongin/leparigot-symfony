@@ -7,7 +7,7 @@
 {% endblock %}
 {% block body %}
 
-  <div style="display: flex; justify-content: center; height:40vh">
+  <div style="display: flex; justify-content: center; height:40vh" class="entete">
     <div class="typewriter" style="margin:auto">
       <h1>LES RESTOS</h1>
     </div>
@@ -21,7 +21,7 @@
     <div class="grid-item col-lg-4">
       <div class="div-item-content">
         <a href="{{ path('article_show', {'id': resto.id }) }}">
-          <div class="card shadow p-3 mb-5 bg-white rounded" style="width: 18rem;">
+          <div class="card shadow p-3 mb-5 bg-white rounded" >
             <img class="card-img-top img-thumbnail" src="{{ asset('images/articles/'~ resto.image)}}" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title">{{resto.name}}</h5>

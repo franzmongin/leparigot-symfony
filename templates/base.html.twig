@@ -149,10 +149,13 @@ a.nav-link:hover:before {
 .bottom .copyright p, .bottom .copyright a:hover{
     color: #6c6d83;
 }
+#logo{
+  height:90px;
+}
     </style>
 {% block navbar %}
-<nav class="navbar navbar-expand-lg navbar-dark fixed a">
-	<a class="navbar-brand" href="{{ path('site')}}" style="margin-left:30px;"><img class="logo" src="{{ asset('img/logo.png')}}" height="90px"></a>
+<nav class="navbar navbar-expand-lg navbar-dark a fixed-top" id="navbar">
+	<a class="navbar-brand" href="{{ path('site')}}" style="margin-left:30px;"><img class="logo" id="logo" src="{{ asset('img/logo.png')}}"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar1" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -197,8 +200,18 @@ a.nav-link:hover:before {
 <!--Bottom Footer-->
 {% endblock %}
 {% block javascripts %}
-  <script>
-    
+<script>
+    window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+    document.getElementById("navbar").style.padding = "6px 10px";
+    document.getElementById("logo").style.height = "50px";
+  } else {
+    document.getElementById("navbar").style.padding = "8px 16px";
+    document.getElementById("logo").style.height = "90px";
+  }
+}
   </script>
 {% endblock %}
 </body>

@@ -27,14 +27,14 @@
             {% if article.price == 0 %}
             <div class="col-lg-6 my-auto" style="text-align:center;"><p id="tarif_gratos">GRATUIT</p></div>
             {% else %}
-            <div class="col-lg-6 my-auto" style="text-align:center;"><p id="tarif"><span style="border-bottom:10px solid black;">{{article.price}} €</span></p></div>
+            <div class="col-lg-6 my-auto price" style="text-align:center;"><p id="tarif"><span style="border-bottom:10px solid black;">{{article.price}} €</span></p></div>
             {% endif %}
         </div>
         <div class="row haut">
                 <div class="col-lg-6" style="text-align:center">
                     <img class="img-fluid img-thumbnail" src="{{ vich_uploader_asset(article, 'imageFile') }}" alt="{{article.name}}">
                 </div>
-            <div class="col-lg-5 offset-1">
+            <div class="col-lg-6 whichplan">
                 <h3><span>Quel est le plan ?</span></h3>
                 <p class="textes">{{article.description}}</p>
             </div>
@@ -177,7 +177,7 @@
 <script>
 window.onload = function() {
   var container = document.getElementById('container-top')
-  container.style.marginTop = "25px";
+  container.style.marginTop = "222px";
 };
 </script>
 <script>

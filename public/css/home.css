@@ -27,6 +27,7 @@ html,body{
   margin-bottom:50px;
   border:2px solid lightgrey;
   transition: all 0.3s;
+  width:90%;
   
 }
 .card:hover{
@@ -50,9 +51,7 @@ h2{
   color:black;
   text-decoration:none;
 }
-.topresto, .topbistro{
-  margin-right:24px;
-}
+
 
 
 h5.card-title{
@@ -66,10 +65,11 @@ h2 span{
   border-bottom:6px solid #2867cc;
 }
 .jumbotron {
-  height:calc(100vh - 116px);
+  height:100vh;
   background-position: center !important; /* Center the image */
   background-repeat: no-repeat !important; /* Do not repeat the image */
   background-size: cover !important;
+  background-attachment: fixed !important;
   
 }
 
@@ -226,5 +226,16 @@ span.fleche:nth-child(4) {
   100% {
     opacity: 0;
     transform: translateY(46px);
+  }
+}
+
+@media screen and (max-width: 1025px){
+  .haut-gauche{
+    font-size:8.5vw;
+  }
+}
+@media screen and (max-width:1023px){
+  .topbistro, .topresto, .topexpo{
+    padding-bottom:70px;
   }
 }

@@ -6,13 +6,13 @@ body{
 .container-top{
     font-family: 'Scope One', serif;
     font-weight:600;
-    margin-top:50px;
     background-color:#E3E7EA;
     width:80%;
     padding-right:50px;
     padding-left:50px;
     padding-top:80px;
     padding-bottom:50px;
+    margin-top:116px;
     z-index:2;
     -moz-box-shadow: 10px 10px 5px 0px #656565;
 -webkit-box-shadow: 10px 10px 5px 0px #656565;
@@ -72,9 +72,9 @@ p.horaire{
     color:#000000;
     font-style:italic
 }
-.img-fluid.img-thumbnail{
+/* .img-fluid.img-thumbnail{
     min-width:450px;
-}
+} */
 .date_publication{
     font-style:italic;
     color:grey;
@@ -110,10 +110,9 @@ p.horaire::first-letter {
 
 }
 #tarif_gratos{
-    width:190px;
     height:190px;
     text-align:center;
-    line-height:170px;
+    line-height:190px;
     border-radius:50%;
     font-size:60px;
     display:inline-block;
@@ -154,3 +153,35 @@ border:1px solid #cfcfcf;
     transition:0.5s;
   
   }
+
+/* MEDIA QUERIES */
+
+@media screen and (max-width: 1023px) {
+    #tarif{
+      border:0;
+    }
+    .whichplan{
+        margin-top:60px;
+    }
+    div.row.titre{
+        padding-bottom:15px;
+    }
+    #horaires{
+        padding-bottom:60px;
+    }
+    .container-top{
+        width:100vw;
+    }
+    #tarif_gratos{
+        padding-top:15px;
+    }
+    #tarif{
+        font-size:16vw;
+    }
+    
+  }
+@media screen and (min-width: 1024px) and (max-width: 1354px) {
+   
+}
+
+  
