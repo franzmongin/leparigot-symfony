@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -15,6 +17,7 @@ class Article
     public function __construct()
     {
         $this->CreatedAt = new \DateTime();
+        $this->user = new ArrayCollection();
     }
     /**
      * @ORM\Column(type="string", length=255)
@@ -91,6 +94,11 @@ class Article
      * @ORM\Column(type="date", nullable=true)
      */
     private $dateFin;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="articles")
+     */
+    private $user;
 
     public function getId(): ?int
     {
@@ -243,6 +251,32 @@ class Article
     public function setDateFin(?\DateTimeInterface $dateFin): self
     {
         $this->dateFin = $dateFin;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getUser(): Collection
+    {
+        return $this->user;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->user->contains($user)) {
+            $this->user[] = $user;
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        if ($this->user->contains($user)) {
+            $this->user->removeElement($user);
+        }
 
         return $this;
     }

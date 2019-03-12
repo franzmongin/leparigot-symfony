@@ -1,1 +1,52 @@
-coucou
+
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+  {{parent()}}
+  <link rel="stylesheet" href="{{asset('css/category.css')}}">
+{% endblock %}
+{% block body %}
+
+  <div style="display: flex; justify-content: center; height:40vh" class="entete">
+    <div class="typewriter" style="margin:auto">
+      <h1>MA LISTE</h1>
+    </div>
+  </div>
+  
+
+<div class="container" style="padding-right:2vw; padding-left:2vw;">
+  <div class="grid">
+  
+    {% for article in articles %}
+    <div class="grid-item col-lg-4">
+      <div class="div-item-content">
+        <a href="{{ path('article_show', {'id': article.id }) }}">
+          <div class="card shadow p-3 mb-5 bg-white rounded" >
+            <img class="card-img-top img-thumbnail" src="{{ asset('images/articles/'~ article.image)}}" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">{{article.name}}</h5>
+              <p class="card-text price">~{{article.price}}€</p>
+              <span class="card-text" style="font-style:italic; color:grey; float:left;">{{article.createdAt|date("m/d/Y")}}</span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+    
+    {% endfor %}
+  </div>
+</div>
+<script>
+function masonry_charge(){
+  $('.grid').masonry({
+    // options
+    itemSelector: '.grid-item', // use a separate class for itemSelector, other than .col-
+    percentPosition: true,
+    horizontalOrder: true
+  });
+}
+window.onload = masonry_charge;
+
+</script>
+
+{% endblock %}

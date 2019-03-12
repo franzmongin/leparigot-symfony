@@ -6,9 +6,27 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
 use App\Entity\Article;
+use App\Entity\User;
 
 class SiteController extends AbstractController
 {
+
+    /**
+     * @Route("add_to_list/{id}", name="add_to_list", requirements={"id":"\d+"})
+     * 
+     */
+    public function addToList(Article $article)
+    {
+        $user = $this->getUser();
+        $user->addArticle($article);
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($user);
+        $entityManager->flush();
+        $coucous = $user->getArticles();
+
+        return $this->redirectToRoute('site');
+    }
+
     /**
      * @Route("/", name="site")
      */
@@ -101,13 +119,11 @@ class SiteController extends AbstractController
      */
     public function liste()
     {
-        $articles = $this->getDoctrine()->getRepository(Article::class);
-        $expos = $articles->findBy(
-            ['category' => 'expo']
-        );
+        $user = $this->getUser();
+        $articles = $user->getArticles();
 
         return $this->render('site/liste.html.twig',[
-            'expos' => $expos
+            'articles' => $articles
         ]);
     }
 

@@ -46,7 +46,7 @@
           <div class="card-body">
             <h5 class="card-title">{{resto.name}}</h5>
             <p class="card-text price">~{{resto.price}}€</p>
-            <a href="http://google.fr"><button>AJOUTER</button></a>
+            <a href="{{ path('add_to_list', {'id': resto.id })}}"><button>AJOUTER</button></a>
             <span class="card-text" style="font-style:italic; color:grey; float:left;">{{resto.createdAt|date("d/m/Y")}}</span>
           </div>
         </div>
@@ -69,6 +69,7 @@
             <div class="card-body">
               <h5 class="card-title">{{bistro.name}}</h5>
               <p class="card-text price">~{{bistro.price}}€</p>
+              <a href="{{ path('add_to_list', {'id': bistro.id })}}"><button>AJOUTER</button></a>
               <span class="card-text" style="font-style:italic; color:grey; float:left;">{{bistro.createdAt|date("d/m/Y")}}</span>
             </div>
           </div>
@@ -76,7 +77,7 @@
         {% endfor %}
       </div>
       <div style="text-align:center; padding-top:20px">
-        <a href="{{ path('bistro')}}"><button type="button" class="btn btn-lg">TOUS LES BISTROS</button></a>
+        <a href="{{ path('expo')}}"><button type="button" class="btn btn-lg">TOUTES LES EXPOS</button></a>
       </div>
     </div>
 
@@ -95,6 +96,7 @@
             {% else %}
             <p class="card-text price">GRATUIT</p>
             {% endif %}
+            <a href="{{ path('add_to_list', {'id': expo.id })}}"><button>AJOUTER</button></a>
             <span class="card-text" style="font-style:italic; color:grey; float:left;">{{expo.createdAt|date("d/m/Y")}}</span>
           </div>
         </div>
