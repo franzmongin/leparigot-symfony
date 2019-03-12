@@ -9,8 +9,7 @@
 
 <!-- JUMBOTORN -->
 
- <div class="jumbotron jumbotron-fluid" style="
-  background :url('{{asset('img/paris2.jpg')}}')"=>
+ <div class="jumbotron jumbotron-fluid" style=""=>
 
 {# <video autoplay muted loop>    
     <source src="" data-src="{{asset('videos/paris.mp4')}}" type="video/mp4">
@@ -47,6 +46,7 @@
           <div class="card-body">
             <h5 class="card-title">{{resto.name}}</h5>
             <p class="card-text price">~{{resto.price}}€</p>
+            <a href="http://google.fr"><button>AJOUTER</button></a>
             <span class="card-text" style="font-style:italic; color:grey; float:left;">{{resto.createdAt|date("d/m/Y")}}</span>
           </div>
         </div>
@@ -122,23 +122,10 @@
 {{parent()}}
 <script>
 $(document).ready(function () { 
-    $('body').hide().fadeIn(1500).delay(6000);
-    });
+  $('body').hide().fadeIn(1500).delay(6000);
+});
 
-function deferVideo() {
 
-    //defer html5 video loading
-  $("video source").each(function() {
-    var sourceFile = $(this).attr("data-src");
-    $(this).attr("src", sourceFile);
-    var video = this.parentElement;
-    video.load();
-    // uncomment if video is not autoplay
-    //video.play();
-  });
-
-}
-window.onload = deferVideo;
 {# document.getElementsByClassName('.jumbotron').onscroll = function(){
   location.hash = "#last_articles";
 } #}

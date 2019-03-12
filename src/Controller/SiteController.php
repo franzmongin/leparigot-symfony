@@ -96,6 +96,21 @@ class SiteController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/ma_liste", name="ma_liste")
+     */
+    public function liste()
+    {
+        $articles = $this->getDoctrine()->getRepository(Article::class);
+        $expos = $articles->findBy(
+            ['category' => 'expo']
+        );
+
+        return $this->render('site/liste.html.twig',[
+            'expos' => $expos
+        ]);
+    }
+
 
 
     

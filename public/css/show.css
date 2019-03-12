@@ -178,7 +178,9 @@ border:1px solid #cfcfcf;
     #tarif{
         font-size:16vw;
     }
-    
+    img.img-fluid.img-thumbnail{
+        width:100%;
+    }
   }
 @media screen and (min-width: 1024px) and (max-width: 1354px) {
    
