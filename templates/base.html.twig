@@ -164,14 +164,7 @@ a.nav-link:hover:before {
   </button>
   <div class="collapse navbar-collapse" id="navbar1">
     <ul class="navbar-nav ml-auto" style= "margin-right:400px;">
-    {% if is_granted('ROLE_USER') == false %}
-    <li class="nav-item">
-    <a class="nav-link" href="{{ path('app_login') }}">INSCRIPTION</a>
-    </li>
-    <li class="nav-item">
-    <a class="nav-link text-nowrap" href="{{ path('app_login') }}">SE CONNECTER</a>
-    </li>
-    {% endif %}
+    
     {% if is_granted('ROLE_USER') %}
     <li class="nav-item">
     <a class="nav-link" href="{{ path('ma_liste') }}">MA LISTE</a>
@@ -190,6 +183,14 @@ a.nav-link:hover:before {
 </div>
     <li class="nav-item"><a class="nav-link text-nowrap" href="{{ path('bistro') }}">LES BISTROS</a></li>
     <li class="nav-item"><a class="nav-link text-nowrap" href="{{ path('expo') }}">LES EXPOS</a></li>
+    {% if is_granted('ROLE_USER') == false %}
+    <li class="nav-item">
+    <a class="nav-link" href="{{ path('app_register') }}">INSCRIPTION</a>
+    </li>
+    <li class="nav-item">
+    <a class="nav-link text-nowrap" href="{{ path('app_login') }}">CONNEXION</a>
+    </li>
+    {% endif %}
     {% if is_granted('ROLE_USER') %}
     <li class="nav-item"><a class="nav-link " href="{{ path('app_logout') }}">DECONNEXION</a></li>
     {% endif %}
