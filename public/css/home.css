@@ -1,10 +1,31 @@
-.btn-lg{
+.btn-saved{
+  background-color:green;
+  color:white;
+  font-weight:bold;
+  font-family: 'Roboto Condensed', sans-serif;
+  margin-left:30px;
+  pointer-events:none;
+}
+.btn-add{
+  background-color:#0A1C2E;
+  color:white;
+  font-weight:bold;
+  font-family: 'Roboto Condensed', sans-serif;
+  margin-left:30px;
+}
+.btn-add:hover{
+  background-color:white;
+  color:#0A1C2E;
+  transition:0.5s;
+
+}
+.full-list{
   background-color:white;
   color:#0A1C2E;
   font-weight:bold;
   font-family: 'Roboto Condensed', sans-serif;
 }
-.btn-lg:hover{
+.full-list:hover{
   background-color:#0A1C2E;
   color:white;
   transition:0.5s;

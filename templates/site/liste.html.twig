@@ -20,12 +20,13 @@
     {% for article in articles %}
     <div class="grid-item col-lg-4">
       <div class="div-item-content">
-        <a href="{{ path('article_show', {'id': article.id }) }}">
+        <a href="{{ path('article_show', {'id': article.id }) }}" class="card-link">
           <div class="card shadow p-3 mb-5 bg-white rounded" >
             <img class="card-img-top img-thumbnail" src="{{ asset('images/articles/'~ article.image)}}" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title">{{article.name}}</h5>
               <p class="card-text price">~{{article.price}}€</p>
+              <a href="{{ path('remove_to_list', {'id': article.id })}}" class="remove-to-list"><button class="btn btn-sm btn-remove">SUPPRIMER</button></a>
               <span class="card-text" style="font-style:italic; color:grey; float:left;">{{article.createdAt|date("m/d/Y")}}</span>
             </div>
           </div>
@@ -47,6 +48,26 @@ function masonry_charge(){
 }
 window.onload = masonry_charge;
 
+</script>
+</script>
+{# AJAX CALL FOR removing ARTICLE TO USER VIA AXIOS #}
+<script>
+  function onClickBtnRemoveList(event){
+    event.preventDefault();
+
+    const btnRemove = this.querySelector('.btn-remove');
+    const url = this.href;
+    const card = this.closest(".card-link");
+    axios.get(url).then(function(response) {
+      card.style.display = "none";
+      
+      
+
+    })
+  }
+  document.querySelectorAll('.remove-to-list').forEach(function(link){
+    link.addEventListener('click', onClickBtnRemoveList);
+  })
 </script>
 
 {% endblock %}
