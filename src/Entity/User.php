@@ -5,12 +5,10 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
- * @UniqueEntity(fields={"username"}, message="There is already an account with this username")
  */
 class User implements UserInterface
 {
@@ -24,7 +22,7 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=180, unique=true)
      */
-    private $username;
+    private $email;
 
     /**
      * @ORM\Column(type="json")
@@ -38,7 +36,7 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Article", mappedBy="user")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Article")
      */
     private $articles;
 
@@ -52,6 +50,18 @@ class User implements UserInterface
         return $this->id;
     }
 
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
     /**
      * A visual identifier that represents this user.
      *
@@ -59,14 +69,7 @@ class User implements UserInterface
      */
     public function getUsername(): string
     {
-        return (string) $this->username;
-    }
-
-    public function setUsername(string $username): self
-    {
-        $this->username = $username;
-
-        return $this;
+        return (string) $this->email;
     }
 
     /**
@@ -132,7 +135,6 @@ class User implements UserInterface
     {
         if (!$this->articles->contains($article)) {
             $this->articles[] = $article;
-            $article->addUser($this);
         }
 
         return $this;
@@ -142,7 +144,6 @@ class User implements UserInterface
     {
         if ($this->articles->contains($article)) {
             $this->articles->removeElement($article);
-            $article->removeUser($this);
         }
 
         return $this;

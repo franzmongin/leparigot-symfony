@@ -14,9 +14,9 @@ form{
 
     {{ form_start(registrationForm, {'attr': {'style': 'text-align:center'}}) }}
     <h1 class="h3 mb-3 font-weight-normal" style="text-align:center;">INSCRIPTION</h1>
-        {{ form_widget(registrationForm.username, {
+        {{ form_widget(registrationForm.email, {
             'attr': {'autofocus': true},
-            'attr': {'placeholder': 'Pseudo'}
+            'attr': {'placeholder': 'Email'}
             }) }} <br>
         {{ form_widget(registrationForm.plainPassword, {
             'attr': {'placeholder': 'Mot de passe'}
