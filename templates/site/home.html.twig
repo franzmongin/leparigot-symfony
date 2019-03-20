@@ -35,6 +35,9 @@
 
 
 <!-- TOP ARTICLES -->
+
+{{ dump(user_articles_ids)}}
+
 <div class="container container-top" id="last_articles">
   <div class="row tops">
 
@@ -49,15 +52,20 @@
           <div class="card-body">
             <h5 class="card-title">{{resto.name}}</h5>
             <p class="card-text price">~{{resto.price}}€</p>
-            <a href="{{ path('add_to_list', {'id': resto.id })}}"><button>AJOUTER</button></a>
+            {% if (resto.id in user_articles_ids) == false and is_granted('ROLE_USER') %}
+            <a href="{{ path('add_to_list', {'id': resto.id })}}" class="add-to-list"><button class="btn btn-sm btn-add">AJOUTER</button></a>
+            {% elseif is_granted('ROLE_USER') %}
+            <button class="btn btn-sm btn-saved">AJOUTÉ</button>
+            {% endif %}
             <span class="card-text" style="font-style:italic; color:grey; float:left;">{{resto.createdAt|date("d/m/Y")}}</span>
           </div>
         </div>
       </a>
+
       {% endfor %}
     </div>
     <div style="text-align:center; padding-top:20px">
-        <a href="{{ path('resto')}}"><button type="button" class="btn btn-lg">TOUS LES RESTOS</button></a>
+        <a href="{{ path('resto')}}"><button type="button" class="btn btn-lg full-list">TOUS LES RESTOS</button></a>
       </div>
     </div>
 
@@ -72,7 +80,11 @@
             <div class="card-body">
               <h5 class="card-title">{{bistro.name}}</h5>
               <p class="card-text price">~{{bistro.price}}€</p>
-              <a href="{{ path('add_to_list', {'id': bistro.id })}}"><button>AJOUTER</button></a>
+              {% if (bistro.id in user_articles_ids) == false and is_granted('ROLE_USER')%}
+            <a href="{{ path('add_to_list', {'id': bistro.id })}}" class="add-to-list"><button class="btn btn-sm btn-add">AJOUTER</button></a>
+            {% elseif is_granted('ROLE_USER') %}
+            <button class="btn btn-sm btn-saved">AJOUTÉ</button>
+            {% endif %}
               <span class="card-text" style="font-style:italic; color:grey; float:left;">{{bistro.createdAt|date("d/m/Y")}}</span>
             </div>
           </div>
@@ -80,7 +92,7 @@
         {% endfor %}
       </div>
       <div style="text-align:center; padding-top:20px">
-        <a href="{{ path('expo')}}"><button type="button" class="btn btn-lg">TOUTES LES EXPOS</button></a>
+        <a href="{{ path('expo')}}"><button type="button" class="btn btn-lg full-list">TOUTES LES BISTROS</button></a>
       </div>
     </div>
 
@@ -99,7 +111,11 @@
             {% else %}
             <p class="card-text price">GRATUIT</p>
             {% endif %}
-            <a href="{{ path('add_to_list', {'id': expo.id })}}"><button>AJOUTER</button></a>
+            {% if (expo.id in user_articles_ids) == false and is_granted('ROLE_USER') %}
+            <a href="{{ path('add_to_list', {'id': expo.id })}}" class="add-to-list"><button class="btn btn-sm btn-add">AJOUTER</button></a>
+            {% elseif is_granted('ROLE_USER') %}
+            <button class="btn btn-sm btn-saved">AJOUTÉ</button>
+            {% endif %}
             <span class="card-text" style="font-style:italic; color:grey; float:left;">{{expo.createdAt|date("d/m/Y")}}</span>
           </div>
         </div>
@@ -107,7 +123,7 @@
       {% endfor %}
     </div>
     <div style="text-align:center; padding-top:20px">
-        <a href="{{ path('expo')}}"><button type="button" class="btn btn-lg">TOUTES LES EXPOS</button></a>
+        <a href="{{ path('expo')}}"><button type="button" class="btn btn-lg full-list">TOUTES LES EXPOS</button></a>
       </div>
     </div>
 
@@ -137,8 +153,25 @@ $(document).ready(function () {
 
 
 </script>
+{# AJAX CALL FOR ADDING ARTICLE TO USER VIA AXIOS #}
 <script>
+  function onClickBtnAddList(event){
+    event.preventDefault();
 
+    const btnAdd = this.querySelector('.btn-add');
+    const url = this.href;
+    axios.get(url).then(function(response) {
+      btnAdd.textContent = "AJOUTÉ";
+      btnAdd.classList.remove("btn-add");
+      btnAdd.classList.add("btn-saved");
+      
+      
+
+    })
+  }
+  document.querySelectorAll('.add-to-list').forEach(function(link){
+    link.addEventListener('click', onClickBtnAddList);
+  })
 </script>
 {% endblock %}
 

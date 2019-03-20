@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-
+use Symfony\Component\HttpFoundation\Response;
 use App\Entity\Article;
 use App\Entity\User;
 
@@ -15,16 +15,32 @@ class SiteController extends AbstractController
      * @Route("add_to_list/{id}", name="add_to_list", requirements={"id":"\d+"})
      * 
      */
-    public function addToList(Article $article)
+    public function addToList(Article $article):Response
     {
+        $entityManager = $this->getDoctrine()->getManager();
         $user = $this->getUser();
         $user->addArticle($article);
-        $entityManager = $this->getDoctrine()->getManager();
+        
         $entityManager->persist($user);
         $entityManager->flush();
-        $coucous = $user->getArticles();
 
-        return $this->redirectToRoute('site');
+        return $this->json(['code' => 200], 200);
+    }
+
+    /**
+     * @Route("remove_to_list/{id}", name="remove_to_list", requirements={"id":"\d+"})
+     * 
+     */
+    public function removeToList(Article $article):Response
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $user = $this->getUser();
+        $user->removeArticle($article);
+        
+        $entityManager->persist($user);
+        $entityManager->flush();
+
+        return $this->json(['code' => 200], 200);
     }
 
     /**
@@ -48,13 +64,30 @@ class SiteController extends AbstractController
             ['id' => 'DESC'],
             3
         );
+        $user = $this->getUser();
+        if ($this->getUser()){
+            $user_articles = $user->getArticles();
+            $user_articles_ids = [];
+            foreach($user_articles as $user_article)
+            {
+                $user_articles_ids[] = $user_article->getId();
+            }
+        }
+        else{
+            $user_articles = null;
+            $user_articles_ids = null;
+        }
+        
 
             
 
         return $this->render('site/home.html.twig', [
             'restos' => $restos,
             'bistros' => $bistros,
-            'expos' => $expos
+            'expos' => $expos,
+            'user' => $user,
+            'user_articles' => $user_articles,
+            'user_articles_ids' => $user_articles_ids
         ]);
     }
 
@@ -78,9 +111,25 @@ class SiteController extends AbstractController
         $restos = $articles->findBy(
             ['category' => 'resto']
         );
+        $user = $this->getUser();
+        if ($this->getUser()){
+            $user_articles = $user->getArticles();
+            $user_articles_ids = [];
+            foreach($user_articles as $user_article)
+            {
+                $user_articles_ids[] = $user_article->getId();
+            }
+        }
+        else{
+            $user_articles = null;
+            $user_articles_ids = null;
+        }
 
         return $this->render('site/resto.html.twig',[
-            'restos' => $restos
+            'restos' => $restos,
+            'user' => $user,
+            'user_articles' => $user_articles,
+            'user_articles_ids' => $user_articles_ids
         ]);
     }
 
@@ -93,9 +142,25 @@ class SiteController extends AbstractController
         $bistros = $articles->findBy(
             ['category' => 'bistro']
         );
+        $user = $this->getUser();
+        if ($this->getUser()){
+            $user_articles = $user->getArticles();
+            $user_articles_ids = [];
+            foreach($user_articles as $user_article)
+            {
+                $user_articles_ids[] = $user_article->getId();
+            }
+        }
+        else{
+            $user_articles = null;
+            $user_articles_ids = null;
+        }
 
         return $this->render('site/bistro.html.twig',[
-            'bistros' => $bistros
+            'bistros' => $bistros,
+            'user' => $user,
+            'user_articles' => $user_articles,
+            'user_articles_ids' => $user_articles_ids
         ]);
     }
 
@@ -108,10 +173,27 @@ class SiteController extends AbstractController
         $expos = $articles->findBy(
             ['category' => 'expo']
         );
+        $user = $this->getUser();
+        if ($this->getUser()){
+            $user_articles = $user->getArticles();
+            $user_articles_ids = [];
+            foreach($user_articles as $user_article)
+            {
+                $user_articles_ids[] = $user_article->getId();
+            }
+        }
+        else{
+            $user_articles = null;
+            $user_articles_ids = null;
+        }
 
         return $this->render('site/expo.html.twig',[
-            'expos' => $expos
+            'expos' => $expos,
+            'user' => $user,
+            'user_articles' => $user_articles,
+            'user_articles_ids' => $user_articles_ids
         ]);
+        
     }
 
     /**
@@ -123,7 +205,8 @@ class SiteController extends AbstractController
         $articles = $user->getArticles();
 
         return $this->render('site/liste.html.twig',[
-            'articles' => $articles
+            'articles' => $articles,
+            'user' => $user
         ]);
     }
 
