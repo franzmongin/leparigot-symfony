@@ -18,7 +18,7 @@
   <div class="grid">
   
     {% for article in articles %}
-    <div class="grid-item col-lg-4">
+    <div class="grid-item col-lg-4 item{{article.id}}">
       <div class="div-item-content">
         <a href="{{ path('article_show', {'id': article.id }) }}" class="card-link">
           <div class="card shadow p-3 mb-5 bg-white rounded" >
@@ -26,7 +26,7 @@
             <div class="card-body">
               <h5 class="card-title">{{article.name}}</h5>
               <p class="card-text price">~{{article.price}}€</p>
-              <a href="{{ path('remove_to_list', {'id': article.id })}}" class="remove-to-list"><button class="btn btn-sm btn-remove">SUPPRIMER</button></a>
+              <a href="{{ path('remove_to_list', {'id': article.id })}}" class="remove-to-list" id="card{{article.id}}"><button class="btn btn-sm btn-remove">SUPPRIMER</button></a>
               <span class="card-text" style="font-style:italic; color:grey; float:left;">{{article.createdAt|date("m/d/Y")}}</span>
             </div>
           </div>
@@ -57,9 +57,18 @@ window.onload = masonry_charge;
 
     const btnRemove = this.querySelector('.btn-remove');
     const url = this.href;
-    const card = this.closest(".card-link");
+    const url_array =  url.split('/');
+    const id_item = url_array[4];
+    const card = document.querySelector('.item' + id_item);
+    const msnry = document.querySelector('.grid');
     axios.get(url).then(function(response) {
+      console.log(url);
+      console.log(url_array);
+      console.log('coucou' + id_item);
+      console.log(card.className);
       card.style.display = "none";
+      masonry_charge();
+
       
       
 
