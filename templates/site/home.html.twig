@@ -18,10 +18,13 @@
   {# <div class="container-fluid haut"> #}
     <div class="row" style="height:100%; display:flex;">
       <div class="col-md-4 offset-md-2 haut-gauche" style="text-align:center;">
-        <p style="font-family: 'Roboto Condensed', sans-serif;"->LES <br> DERNIERS <br> BONS <br> PLANS !</p>
+        <p style="font-family: 'Roboto Condensed', sans-serif;">LES <br> DERNIERS <br> BONS <br> PLANS !</p>
         <a href="#last_articles"><p class='icon-scroll'></p></a>
       </div>
-      <div class="col-md-6"></div>
+      <div class="col-md-6 haut-gauche">
+        <p style="font-family: 'Roboto Condensed', sans-serif;">Inscris-toi pour créer ta liste de bons plans préférés !</br>
+        <a href="{{ path('app_register')}}"><button type="button" class="btn btn-lg">S'inscrire</button></a></p>
+      </div>
     </div>
   {# </div> #}
   <!-- /.container -->
